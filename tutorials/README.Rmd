@@ -42,6 +42,8 @@ Come collegare R al nostro account Google e leggere i dati direttamente da Googl
 
 ### [Convertire le colonne in `numeric`](colonne_numeriche/)
 
+### [Dal FORK alla PULL-REQUEST](https://github.com/eliavangi/Dalla-Fork-alla-Pull-Request)
+
 # Work in progress
 
 ### Installazione su Windows
