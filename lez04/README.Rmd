@@ -337,7 +337,7 @@ gg <- gg + geom_point(color = "black",
 gg <- gg + facet_wrap(~Set, ncol = 2) + theme_bw()
 gg
 
-### thanks to github.com/fabianmoronzirfas/anscombe-quartet-in-cran
 ```
+### thanks to github.com/fabianmoronzirfas/anscombe-quartet-in-cran
 
 
