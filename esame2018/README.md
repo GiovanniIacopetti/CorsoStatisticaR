@@ -1,4 +1,4 @@
-Esame 2018: generazione dei dati
+Esame 2018
 ================
 
 -   [Per l'esame:](#per-lesame)
@@ -43,7 +43,8 @@ Il file markdown deve:
 Correggere l'esame
 ------------------
 
-A questo punto può essere invitato l'[account GitHub](https://github.com/GiovanniIacopetti/) a collaborare alla repository per la valutazione dell'esame. Se entro una settimana non ricevete notizia dell'esito inviate una mail ai docenti.
+A questo punto può essere invitato questo account GitHub a collaborare alla repository per la valutazione dell'esame. 
+Se entro una settimana non ricevete notizia dell'esito inviatemi una mail.
 
 ### Buon lavoro
 
