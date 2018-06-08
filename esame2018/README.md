@@ -10,10 +10,10 @@ Esame 2018
 
 Questo file crea nella sua cartella il database `dati_esame_2018.csv`, che contiene:
 
-`diam`: diametro espresso in cm
-`h`: altezza della pianta espressa in metri
-`taxa`: specie
-`thinned`: diradamento
+`diam`: diametro espresso in cm  
+`h`: altezza della pianta espressa in metri  
+`taxa`: specie  
+`thinned`: diradamento  
 
 Per l'esame:
 ============
