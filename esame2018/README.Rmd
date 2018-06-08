@@ -1,0 +1,80 @@
+---
+title: "Esame 2018: generazione dei dati"
+output: 
+        github_document:
+                toc: TRUE
+                # toc_depth: 3 # default = 3
+                # fig_width: 7 # default = 7
+                # fig_height: 5 # default = 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+Questo file crea nella sua cartella il database `dati_esame_2018.csv`, che contiene:
+
+`diam`: diametro espresso in cm  
+`h`: altezza della pianta espressa in metri  
+`taxa`: specie  
+`thinned`: diradamento  
+
+```{r}
+set.seed(42)
+data <- data_frame(diam = rnorm(100, mean = 50, sd = 15), 
+                   h = (diam * 0.4) + 5 + rnorm(100, mean = 0, sd = 5), 
+                   taxa = sample(c("ABIALB", "FAGSYL"), 100, replace = T),
+                   thinned = sample(c("light", "medium", "strong"), 100, replace = T))
+data$h[data$taxa == "ABIALB"] <- data$h[data$taxa == "ABIALB"] + 2
+data$h[data$thinned == "light"] <- data$h[data$thinned == "light"] + 10
+data$diam[data$thinned == "strong"] <- data$diam[data$thinned == "strong"] + 10
+```
+
+```{r}
+write_csv(data, path = "../esame2018/data_esame_2018.csv")
+```
+
+# Per l'esame:
+
+## Creare un file markdown che illusti la vostra analisi dei dati del file passo passo
+
+### Contenuto dell'analisi dei dati
+
+* nome e cognome
+* numero di matricola
+* corso di laurea
+* un grafico esplorativo dei dati
+* le principali metriche sintetiche delle colonne (conteggi, medie, deviazioni standard)
+* grafico della correlazione lineare di diametro e altezza
+* valori della correlazione lineare (pValue della pendenza e $R^2$)
+
+## Il file markdown deve:
+
+* essere salvato come README in una repository _**PRIVATA**_ del vostro account GitHub
+
+* tenere tutto il codice che lo genera nascosto e mostrare solo i risultati dell'analisi sulla pagina di GitHub
+
+* avere il codice commentato in modo esaustivo
+
+## Correggere l'esame
+
+A questo punto può essere invitato l'[account GitHub](https://github.com/GiovanniIacopetti/) a collaborare alla repository per la valutazione dell'esame.
+Se entro una settimana non ricevete notizia dell'esito inviate una mail ai docenti.
+
+### Buon lavoro
+
+
+
+---
+
+<div align="center">
+[Syllabus](../README.md)
+</div>
+---
