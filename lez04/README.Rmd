@@ -1,9 +1,9 @@
 ---
 title: "lez04: Regressioni lineari"
 output: 
-        ioslides_presentation: 
-                widescreen: TRUE
-                df_print: paged
+        # ioslides_presentation: 
+        #         widescreen: TRUE
+        #         df_print: paged
         github_document:
                 toc: TRUE
                 # toc_depth: 3 # default = 3
@@ -22,6 +22,7 @@ knitr::opts_chunk$set(cache = TRUE,
 library(tidyverse)
 ```
 
+__NB: il seguente file è derivato dalle slides utilizzate per la lezione, le note e le spiegazioni esaustive riguardo la parte grafica saranno aggiunte il prima possibile.__
 
 ## Riprendiamo il database "iris"
 
@@ -302,6 +303,8 @@ ggplot(lm(y ~ 1, data = data)) +
 
 
 ## Anscombe's quartet
+
+È un famoso esempio (l'origine del datasauro) di come i valori di una correlazione non indichino tutto, e di come una correlazione lineare possa non essere lo strumento adatto per analizzare i nostri dati:
 
 ```{r}
 summary(anscombe)
