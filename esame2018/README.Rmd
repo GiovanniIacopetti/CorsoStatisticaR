@@ -1,5 +1,5 @@
 ---
-title: "Esame 2018: generazione dei dati"
+title: "Esame 2018"
 output: 
         github_document:
                 toc: TRUE
@@ -65,8 +65,8 @@ write_csv(data, path = "../esame2018/data_esame_2018.csv")
 
 ## Correggere l'esame
 
-A questo punto può essere invitato l'[account GitHub](https://github.com/GiovanniIacopetti/) a collaborare alla repository per la valutazione dell'esame.
-Se entro una settimana non ricevete notizia dell'esito inviate una mail ai docenti.
+A questo punto può essere invitato questo account GitHub a collaborare alla repository per la valutazione dell'esame.
+Se entro una settimana non ricevete notizia dell'esito inviatemi una mail direttamente.
 
 ### Buon lavoro
 
