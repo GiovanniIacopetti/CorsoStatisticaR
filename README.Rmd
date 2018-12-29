@@ -100,4 +100,4 @@ Con il tempo i tutorials verranno tradotti in inglese, come strumento di passagg
 
 ## Lezioni anni precedenti
 
-[Lezioni 2018-2019](lez_old_18_19/)
+[Lezioni 2018-2019](lez_18_19/)
