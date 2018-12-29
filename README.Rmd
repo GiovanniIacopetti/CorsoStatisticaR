@@ -89,7 +89,7 @@ Con il tempo i tutorials verranno tradotti in inglese, come strumento di passagg
 
 | Data | Aula | Lezione                                                    |
 | ---  | ---  | ---                                                        |
-| ...  | ...  | [Tabelle 2x2](lez_2x2/) |
+| ...  | ...  | [Tabelle 2x2](lez_19_20/lez_2x2/) |
 |      |      |                                                        |
 | ...  | ...  | [lez97: Le cose e i loro nomi](lez97/) |
 | ...  | ...  | [lez98: Le domande da fare ai tuoi dati](lez98/) |
