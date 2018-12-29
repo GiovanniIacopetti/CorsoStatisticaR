@@ -1,0 +1,34 @@
+---
+title: "Lezioni AA 2018-2019"
+output: 
+        github_document:
+                toc: TRUE
+                # toc_depth: 3 # default = 3
+                # fig_width: 7 # default = 7
+                # fig_height: 5 # default = 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+
+| Data       | Aula | Lezione                                                    |
+| ---        | ---  | ---                                                        |
+| 2018-03-20 |  J   | [lez01: Introduzione al corso, l'analisi dei dati, approccio alle statistiche](lez01/) |
+| 2018-03-27 |  J   | [lez02: R, gli oggetti ed i tipi di variabili](lez02/) |
+| 2018-04-17 |  J   | [lez03: Statistica descrittiva](lez03/) |
+|            |      |                                                        |
+| alla fine  | casa | [lez97: Le cose e i loro nomi](lez97/) |
+| alla fine  | casa | [lez98: Le domande da fare ai tuoi dati](lez98/) |
+| alla fine  | casa | [lez99: I passi da fare, per filo e per segno](lez99/) |
+
+
+---
+
+<div align="center">
+[Syllabus](../README.md)
+</div>
+---

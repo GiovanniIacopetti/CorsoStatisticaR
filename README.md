@@ -5,10 +5,11 @@ Laboratorio di Statistica Forestale
 -   [Obbiettivi del corso:](#obbiettivi-del-corso)
 -   [Prerequisiti del corso:](#prerequisiti-del-corso)
     -   [Installazioni e account (in quest'ordine):](#installazioni-e-account-in-questordine)
--   [Presenze 2018](#presenze-2018)
+-   [Presenze 2018 (non più accessibili)](#presenze-2018-non-più-accessibili)
 -   [FAQ](#faq)
 -   [TUTORIALS](#tutorials)
 -   [Lezioni](#lezioni)
+-   [Lezioni anni precedenti](#lezioni-anni-precedenti)
 
 ------------------------------------------------------------------------
 
@@ -65,10 +66,10 @@ Non è *indispensabile* avere tutto installato per la prima lezione ma lo sarà 
 -   [GitHub](http://github.com/): **N.B.** c'è un sistema di account per gli studenti che toglie alcune limitazioni degli account 'free' [a questo link](https://education.github.com/pack)
 -   [GitHub Desktop](https://desktop.github.com/): un software per gestire i propri progetti Git senza passare dal browser (permette di gestire anche i progetti in locale che non sono su GitHub)
 
-Presenze 2018
--------------
+Presenze 2018 (non più accessibili)
+-----------------------------------
 
-A [questo link](https://docs.google.com/spreadsheets/d/19U_JozMlFgE4YfD2kzcpR5lROR4U_wjfKJ3RsSGnqzk/edit?usp=sharing) è possibilie controllare il registro delle presenze. Chi è segnato senza l'anno di corso è pregato di mandarmelo per e-mail, in modo da poter aggiungere anche il suo indirizzo alla mailing-list.
+A [questo link](https://docs.google.com/) è possibilie controllare il registro delle presenze. Chi è segnato senza l'anno di corso è pregato di mandarmelo per e-mail, in modo da poter aggiungere anche il suo indirizzo alla mailing-list.
 
 FAQ
 ---
@@ -99,8 +100,8 @@ Lezioni
 </thead>
 <tbody>
 <tr class="odd">
-<td>2018-03-20</td>
-<td>J</td>
+<td>***</td>
+<td>...</td>
 <td><a href="lez01/">lez01: Introduzione al corso, l'analisi dei dati, approccio alle statistiche</a></td>
 </tr>
 <tr class="even">
@@ -135,3 +136,8 @@ Lezioni
 </tr>
 </tbody>
 </table>
+
+Lezioni anni precedenti
+-----------------------
+
+[Lezioni 2018-2019](lez_old_18_19/)
