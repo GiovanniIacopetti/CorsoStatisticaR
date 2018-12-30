@@ -85,13 +85,13 @@ In [questa pagina](tutorials/) una collezione di tutorial in italiano creati dag
 Lezioni
 -------
 
-| Data | Aula | Lezione                                                |
-|------|------|--------------------------------------------------------|
-| ...  | ...  | [Tabelle 2x2](lez_19_20/lez_2x2/)                      |
-|      |      |                                                        |
-| ...  | ...  | [lez97: Le cose e i loro nomi](lez97/)                 |
-| ...  | ...  | [lez98: Le domande da fare ai tuoi dati](lez98/)       |
-| ...  | ...  | [lez99: I passi da fare, per filo e per segno](lez99/) |
+| Data | Aula | Lezione                                                          |
+|------|------|------------------------------------------------------------------|
+| ...  | ...  | [Tabelle 2x2](lez_19_20/lez_2x2/)                                |
+|      |      |                                                                  |
+| ...  | ...  | [lez97: Le cose e i loro nomi](lez_18_19/lez97/)                 |
+| ...  | ...  | [lez98: Le domande da fare ai tuoi dati](lez_18_19/lez98/)       |
+| ...  | ...  | [lez99: I passi da fare, per filo e per segno](lez_18_19/lez99/) |
 
 Lezioni anni precedenti
 -----------------------
