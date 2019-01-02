@@ -1,10 +1,10 @@
 ---
 title: "Lez_2x2: Tavole (o tabelle) di contingenza"
 output: 
-        ioslides_presentation:
-                widescreen: true
-                df_print: paged
-                css: style.css
+        # ioslides_presentation:
+        #         widescreen: true
+        #         df_print: paged
+        #         css: style.css
         github_document:
                 toc: TRUE
                 # toc_depth: 3 # default = 3
@@ -96,8 +96,6 @@ Ad esempio abbiamo:
 * una quercia danneggiata
 * 4 pini sani
 * 3 querce sane
-
-
 
 ## A cosa servono:
 
@@ -466,7 +464,7 @@ vogliamo controllare se i pini sono davvero più malati delle quercie.
 
 * L'ipotesi $H_0$ è che le proporzioni di piante malate derivino da un'unica popolazione che non differenzia rispetto alla specie: $$H_0 : p_{pini} - p_{quercie} = 0$$
 * Calcoliamo la differenza di proporzioni dei dati è 
-$$\hat{p}_{pini} - \hat{p}_{quercie} = \frac{2}{4} - \frac{1}{3} \approx 0.167$$
+$$\hat{p}_{pini} - \hat{p}_{quercie} = \frac{2}{6} - \frac{1}{4} \approx 0.0832$$
 
 ---
 
@@ -476,7 +474,7 @@ Il procedimento è piuttosto lineare:
 2. Dividiamo le carte in un gruppo da sei (i pini) e uno da 4 (le quercie)
 3. Calcoliamo di nuovo $\hat{p}_{pini} - \hat{p}_{quercie}$ e lo segnamo
 4. Ripetiamo i passi 2 e 3 un **botto di volte**, tipo 1000.
-5. Vediamo in che percentuale di casi il valore supera $0.167$ (che avevamo ottenuto dalla tabella)
+5. Vediamo in che percentuale di casi il valore supera $0.0832$ (che avevamo ottenuto dalla tabella)
 6. Dividiamo la percentuale per 100 e otteniamo il nostro p-value
 
 In pratica si calcola un p-value di forza bruta. La cosa è fattibile quasi solo con l'ausilio del calcolatore.
@@ -506,31 +504,206 @@ _Upton (1982)_ e _D'Agostino (1988)_ eliminano dal gioco sia Yates che Fisher
 
 # la pratica
 
+## I dati di partenza
+
+Carichiamo i dati da un foglio Excel:
+
+```{r, message=FALSE}
+library(readxl)
+read_excel(path = "data.xlsx")
+```
+
+Le specie sono state mescolate per mantenere la riservatezza del dataset.  
+L'unica variabile corretta è `Pseudotsuga menziesii`, che è la specie di riferimento delle misurazioni.
+
+---
+
+I numeri son abbondanze relative (percentuali di copertura) di diverse specie.  
+La tabella ha (come dovrebbe) le specie sulle colonne, le misure di copertura sulle righe.
+
+Controlliamo la tabella:
+
+```{r}
+DB <- read_excel(path = "data.xlsx")[, -1] # eliminiamo la colonna con i nomi
+str(DB)
+```
+
+---
+
+La colonna del castagno è stata identificata come `chr` perché alcune caselle hanno dei `.` invece che `0`. Si correggono subito e si trasforma di nuovo la variabile in `num`:
+
+```{r}
+DB$`Castanea sativa`[DB$`Castanea sativa` == "."] <- 0 # spazi nei nomi delle 
+# colonne ci cotringono a usare gli apici ` [alt + \]
+
+# Non la metto subito al suo posto nel DB perché facilmente con as.numeric si 
+# perdono dei dati che potrei voler ricostruire
+Castanea_sativa <- as.numeric(DB$`Castanea sativa`) 
+```
+
+Il programma avvisa che uno dei valori non era numerico, e quindi è stato perso.
+
+---
+
+Confrontiamo i `NA` della colonna del `DB` con quelli della variabile `Castanea_sativa`
+
+```{r}
+DB$`Castanea sativa`[is.na(Castanea_sativa) & !is.na(DB$`Castanea sativa`)]
+```
+
+Questa `O` al posto dello `0` è un problema classico, si corregge facilmente:
+
+```{r}
+Castanea_sativa[DB$`Castanea sativa` == "O"] <- 0
+DB$`Castanea sativa` <- Castanea_sativa
+```
+
+```{r}
+sum(is.na(DB)) # in queste tabelle se ci sono zeri non ci dovrebbero essere NA
+```
+
+---
+
+Ce sono 3 `NA` che non si spiegano, in questo caso:
+
+1. Si ricontrollano i cartacei da cui sono stati trascritti i dati
+2. Si chiedono delucidazioni al rilevatore
+3. Si sceglie se imputare i dati mancanti o recuperarli in qualche altro modo
+
+Nel nostro caso erano degli errori di battitura di celle che avrebbero dovuto essere `0`.
+
+```{r}
+DB$`Castanea sativa`[is.na(DB$`Castanea sativa`)] <- 0
+```
+
+
+```{r}
+min(DB) # mi aspetto che il minimo sia 0, e conti come assenza
+max(DB) # che sia sopra il 100% non è un problema, se è spiegato nei M&M
+```
+
+---
+
+È importante che le variabili siano di tipo **binomiale**, in questo caso dati di presenza/assenza.
+
+La prassi è sostituire tutte le coperture `>0` con un `1`.
+
+```{r}
+DB[DB > 0] <- 1
+```
+
+
+## La tabella di contingenza
+
+Consideriamo le variabili `Pseudotsuga menziesii` e `Clematis vitalba`:
+
+```{r}
+PSEMEN <- DB$`Pseudotsuga menziesii`
+CLEVIT <- DB$`Clematis vitalba`
+```
+
+la tabella di contingenza si crea con un solo comando:
+
+```{r}
+tavola_PSEMEN_CLEVIT <- table(PSEMEN, CLEVIT)
+tavola_PSEMEN_CLEVIT
+```
+
+## Presupposti delle misure
+
+**Il campionamento è di tipo multinomiale**: il numero dei plot da misurare è stato deciso prima di iniziare le misure.
+
+**La tabella non è condizionata**: una volta arrivati sui plot si sono scelti punti con un principio completamente indipendente dalla presenza o meno di _Douglasia_ o di _vitalba_, i totali marginali non erano assolutamente prevedibili.
+
+## Le nostre 3 domande
+
+Ritorniamo alle nostre 3 specifiche domande:
+
+1. I due criteri di classificazione (le due variabili) sono indipendenti?
+2. Uno dei due valori di una variabile è più comune in uno dei valori della seconda variabile? (c'è una differenza con il punto 2)
+3. La proporzione di una variabile è uguale a quella dell'altra?
+
+Nel nostro caso cerchiamo di tradurre le domande:
+
+1. La presenza della _Douglasia_ è indipendente da quella della _vitalba_
+2. La _Douglasia_ si rinnova meno dove c'è la _vitalba_?
+3. La proporzione di plot con la _Douglasia_ è uguale alla proporzione di plot con la _vitalba_?
+
+_vale la pena di notare che la domanda numero 3 in questo caso può essere interessante, come no_
+
+## P-hacking | cose che tutti fanno ma nessuno lo dice!
+
+È importante riconoscere che le domande dovrebbero essere state decise **prima di andare in campo**, solo in questo caso i p-value hanno un vero significato.
+
+* siamo ancora nel campo dell'_hypotesis testing_
+
+Sel la domanda viene scelta dopo aver visto i dati (ma a un buon forestale spesso basta vedere il bosco) i p-value diventano solo indicativi, e siamo tenuti a scriverlo a chiare lettere:
+
+* siamo nel campo delle _analisi esplorative_
+
+## 1. Test di indipendenza delle variabili
+
+Nessuna delle caselle è `0`, quindi si procede con il **'N-1' Pearson's Chi-Squared Test**
+Si ricorda che nel caso **2x2** il test è equivalente al **Mantel-Haenszel Chi-Squared senza la correzione per la continuità** 
+
+Prima si crea un vettore necessario per il test composto da un numero N di cifre uguali:
+
+```{r}
+stratum <- rep(1, length(PSEMEN)) # la lunghezza di una qualsiasi variabile è = N
+```
+
+La funzione `mantelhaen.test()` nel nostro caso ha bisogno di 4 argomenti:
+
+1. La prima variabile
+2. La seconda variabile
+3. Un vettore che identifichi gli strati (nel nostro caso tutto uguale)
+4. `correct = FALSE`, per evitare di applicare la _correzione per la continuità_
+
 ---
 
 ```{r}
-table(mtcars$vs, mtcars$am)
-kable(table(mtcars$vs, mtcars$am))
+mantelhaen.test(PSEMEN, CLEVIT, stratum, correct = FALSE)
 ```
 
----
+Nel nostro caso il p-value è ben maggiore di 0.05. Le variabili risultano indipendenti.
 
-```{r, results='asis'}
-table(mtcars$vs, mtcars$am) %>%
-    kable() %>%
-    kable_styling()
-```
+## 2. Test per la differenza di proporzioni
+
+In questo caso ci chiediamo se ci sia più _vitalba_ dove la _Douglasia_ non si rinnova:
+
+* L'ipotesi $H_0$ è che le proporzioni di _vitalba_ derivino da un'unico tipo di plot, che non risente della rinnovazione o meno della douglasia, in questo caso $p$ è la proporzione di plot con rinnovazione di _vitalba_: $$H_0 : p_{NOdouglasia} - p_{douglasia} = 0$$
+* Calcoliamo la differenza di proporzioni dei dati è 
+$$\hat{p}_{NOdouglasia} - \hat{p}_{douglasia} = \frac{6}{9} - \frac{7}{19}$$
 
 ---
 
 ```{r}
-v_shaped <- mtcars$vs
-v_shaped[v_shaped == 0] <- "v_shaped"
-v_shaped[v_shaped == 1] <- "straight"
-
-transmission <- mtcars$am
-transmission[transmission == 0] <- "automatic"
-transmission[transmission == 1] <- "manual"
-
-table(v_shaped, transmission)
+diff_p <- (tavola_PSEMEN_CLEVIT[1, 2]/sum(tavola_PSEMEN_CLEVIT[1, ])) - (tavola_PSEMEN_CLEVIT[2, 2]/sum(tavola_PSEMEN_CLEVIT[2, ]))
+diff_p
 ```
+
+La funzione vuole le variabili inserite come colonne di un `data.frame`, e nel caso di variabili qualitative (come le nostre) che siano colonne di tipo `factor` invece che `numeric`
+
+```{r}
+data <- data.frame(CLEVIT = as.factor(CLEVIT), PSEMEN = as.factor(PSEMEN))
+```
+
+---
+
+```{r, message=FALSE}
+library(statsr)
+inference(CLEVIT, PSEMEN, data = data, type = "ht", statistic = "proportion", 
+          success = "1", method = "simulation", order = c("0", "1"), null = 0, 
+          alternative = "greater", nsim = 10000, 
+          show_eda_plot = FALSE, show_inf_plot = FALSE)
+```
+
+---
+
+```{r, message=FALSE}
+inference(CLEVIT, PSEMEN, data = data, type = "ht", statistic = "proportion", 
+          success = "1", method = "simulation", order = c("0", "1"), null = 0, 
+          alternative = "greater", nsim = 10000, 
+          show_var_types = FALSE, show_summ_stats = FALSE, show_res = FALSE)
+```
+
