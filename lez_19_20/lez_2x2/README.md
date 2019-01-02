@@ -487,10 +487,10 @@ Nonostante le tabelle 2x2 si presentino sotto questa forma:
 
 una parte fondamentale è ricoperta dai **totali marginali**:
 
-|                             |                  | *n*<sub>1</sub> = *a* + *b* |
-|-----------------------------|------------------|-----------------------------|
-|                             |                  | *n*<sub>2</sub> = *c* + *d* |
-| *n*<sub>3</sub> = *a* + *c* | *n*4 = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
+|                             |                             | *n*<sub>1</sub> = *a* + *b* |
+|-----------------------------|-----------------------------|-----------------------------|
+|                             |                             | *n*<sub>2</sub> = *c* + *d* |
+| *n*<sub>3</sub> = *a* + *c* | *n*<sub>4</sub> = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
 
 ------------------------------------------------------------------------
 
@@ -559,10 +559,10 @@ la tabella che misuriamo ha questi valori:
 
 il primo passo è calcolare i totali marginali:
 
-| **a**                       | **b**            | *n*<sub>1</sub> = *a* + *b* |
-|-----------------------------|------------------|-----------------------------|
-| **c**                       | **d**            | *n*<sub>2</sub> = *c* + *d* |
-| *n*<sub>3</sub> = *a* + *c* | *n*4 = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
+| **a**                       | **b**                       | *n*<sub>1</sub> = *a* + *b* |
+|-----------------------------|-----------------------------|-----------------------------|
+| **c**                       | **d**                       | *n*<sub>2</sub> = *c* + *d* |
+| *n*<sub>3</sub> = *a* + *c* | *n*<sub>4</sub> = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
 
 ------------------------------------------------------------------------
 
@@ -649,10 +649,10 @@ La sua efficacia è valida solo nel caso si rispettino le caratteristiche sperim
 
 Data la tabella di contingenza
 
-| **a**                       | **b**            | *n*<sub>1</sub> = *a* + *b* |
-|-----------------------------|------------------|-----------------------------|
-| **c**                       | **d**            | *n*<sub>2</sub> = *c* + *d* |
-| *n*<sub>3</sub> = *a* + *c* | *n*4 = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
+| **a**                       | **b**                       | *n*<sub>1</sub> = *a* + *b* |
+|-----------------------------|-----------------------------|-----------------------------|
+| **c**                       | **d**                       | *n*<sub>2</sub> = *c* + *d* |
+| *n*<sub>3</sub> = *a* + *c* | *n*<sub>4</sub> = *b* + *d* | *N* = *a* + *b* + *c* + *d* |
 
 Fisher dimostrò che la probabilità che una tale configurazione di *a*, *b*, *c*, e *d* aveva una probabilità di realizzarsi calcolabile:
 
@@ -909,7 +909,7 @@ La colonna del castagno è stata identificata come `chr` perché alcune caselle 
 
 ``` r
 DB$`Castanea sativa`[DB$`Castanea sativa` == "."] <- 0 # spazi nei nomi delle 
-# colonne ci cotringono a usare gli apici ` [alt + \]
+# colonne ci costringono a usare gli apici ` [alt + \]
 
 # Non la metto subito al suo posto nel DB perché facilmente con as.numeric si 
 # perdono dei dati che potrei voler ricostruire
@@ -1115,7 +1115,7 @@ inference(CLEVIT, PSEMEN, data = data, type = "ht", statistic = "proportion",
     ## n_1 = 19, p_hat_1 = 0.3684
     ## H0: p_0 =  p_1
     ## HA: p_0 > p_1
-    ## p_value = 0.1498
+    ## p_value = 0.1375
 
 ------------------------------------------------------------------------
 

@@ -194,7 +194,7 @@ una parte fondamentale è ricoperta dai **totali marginali**:
 |||$n_1 = a+b$  |
 |---         |---         |---          |
 |||$n_2 = c+d$  |
-|$n_3 = a+c$ |$n4 = b+d$  |$N = a+b+c+d$|
+|$n_3 = a+c$ |$n_4 = b+d$  |$N = a+b+c+d$|
 
 ---
 
@@ -267,7 +267,7 @@ il primo passo è calcolare i totali marginali:
 |$\mathbf{a}$|$\mathbf{b}$|$n_1 = a+b$  |
 |---         |---         |---          |
 |$\mathbf{c}$|$\mathbf{d}$|$n_2 = c+d$  |
-|$n_3 = a+c$ |$n4 = b+d$  |$N = a+b+c+d$|
+|$n_3 = a+c$ |$n_4 = b+d$  |$N = a+b+c+d$|
 
 ___
 
@@ -298,7 +298,7 @@ Vale la pena notare che i totali marginali sono considerati il vero dato certo d
 in questo caso il grado di libertà della tabella (cioè di $a$, $b$, $c$, e $d$) è in realtà uno solo:
 se variassimo $a$, varieremmo di conseguenza anche tutti gli altri valori.
 
-In generale i gradi di libertà di una tabella di contingenza sono:
+In generale i gradi di libertà di una tabella di contingenza sono:  
 $$GDL = (righe-1) * (colonne-1)$$
 
 ---
@@ -378,7 +378,7 @@ Data la tabella di contingenza
 |$\mathbf{a}$|$\mathbf{b}$|$n_1 = a+b$  |
 |---         |---         |---          |
 |$\mathbf{c}$|$\mathbf{d}$|$n_2 = c+d$  |
-|$n_3 = a+c$ |$n4 = b+d$  |$N = a+b+c+d$|
+|$n_3 = a+c$ |$n_4 = b+d$  |$N = a+b+c+d$|
 
 Fisher dimostrò che la probabilità che una tale configurazione di $a$, $b$, $c$, e $d$ aveva una probabilità di realizzarsi calcolabile:
 
@@ -534,7 +534,7 @@ La colonna del castagno è stata identificata come `chr` perché alcune caselle 
 
 ```{r}
 DB$`Castanea sativa`[DB$`Castanea sativa` == "."] <- 0 # spazi nei nomi delle 
-# colonne ci cotringono a usare gli apici ` [alt + \]
+# colonne ci costringono a usare gli apici ` [alt + \]
 
 # Non la metto subito al suo posto nel DB perché facilmente con as.numeric si 
 # perdono dei dati che potrei voler ricostruire
