@@ -96,9 +96,299 @@
           </hgroup>
   </slide>
 
-<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>la teoria</h2></hgroup><article  id="la-teoria">
+<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>La teoria</h2></hgroup><article  id="la-teoria">
 
 </article></slide><slide class=""><hgroup><h2>Tabelle di contingenza 2x2 </h2><h3> che faccia hanno</h3></hgroup><article  id="tabelle-di-contingenza-2x2-che-faccia-hanno">
+
+<p>Nelle tabelle di contingenza vengono riassunti i dati di due variabili binomiali (cioè di tipo qualitativo che possono assumere solo due valori).</p>
+
+<ul>
+<li>Vero/Falso,</li>
+<li>Presente/Assente</li>
+<li>Cane/Gatto</li>
+<li>ecc/ecc</li>
+</ul>
+
+<p>Si ricorda che le categorie devono essere <strong>esclusive</strong> ed <strong>esaustive</strong>:</p>
+
+<ul>
+<li><strong>Esclusive</strong>: nessun dato può ricadere simultaneamente in tutte e due</li>
+<li><strong>Esaustive</strong>: tutti i dati possono essere assegnati a una o all&#39;altra categoria</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>I campioni devono in teoria essere <strong>indipendenti</strong>, non devono cioè essere legati uno all&#39;altro in modo particolare, come ad esempio 20 persone di 8 famiglie.</p>
+
+<p>Come abbiamo osservato più volte questa difficoltà viene spesso ignorata.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Se le due variabili possono essere considerate causa/effetto per questioni storiche si preferisce mettere le cause come nomi delle righe, gli effetti come nomi delle colonne.</p>
+
+<p>Per i fini statistici è indifferente quale variabile è sulle righe e quale sulle colonne.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Partendo da una tabella contenente dati di questo tipo:</p>
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:right;">
+
+ID
+
+</th>
+
+<th style="text-align:left;">
+
+Specie
+
+</th>
+
+<th style="text-align:left;">
+
+Danno
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:left;">
+
+Quercia
+
+</td>
+
+<td style="text-align:left;">
+
+Danno
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Danno
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Danno
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:left;">
+
+Quercia
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+<td style="text-align:left;">
+
+Quercia
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+<td style="text-align:left;">
+
+Quercia
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+Pino
+
+</td>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>si passa a una tabella di contingenza:</p>
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
 
@@ -112,13 +402,13 @@
 
 <th style="text-align:right;">
 
-automatic
+Pino
 
 </th>
 
 <th style="text-align:right;">
 
-manual
+Quercia
 
 </th>
 
@@ -132,19 +422,19 @@ manual
 
 <td style="text-align:left;">
 
-straight
+Danno
 
 </td>
 
 <td style="text-align:right;">
 
-7
+2
 
 </td>
 
 <td style="text-align:right;">
 
-7
+1
 
 </td>
 
@@ -154,19 +444,19 @@ straight
 
 <td style="text-align:left;">
 
-v_shaped
+Sano
 
 </td>
 
 <td style="text-align:right;">
 
-12
+4
 
 </td>
 
 <td style="text-align:right;">
 
-6
+3
 
 </td>
 
@@ -176,55 +466,494 @@ v_shaped
 
 </table>
 
+<p><em><strong>Non è rilevante quale variabile finisce sulle righe e quale sulle colonne</strong></em></p>
+
 <p>I numeri nella tabella rappresentano il numero dei campioni che presentano contemporaneamente le aratteristiche indicate dalla loro riga e dalla loro colonna:</p>
 
-<p>Ad esempio 12 modelli hanno un motore a V e il cambio automatico</p>
+<p>Ad esempio abbiamo:</p>
+
+<ul>
+<li>2 pini danneggiati</li>
+<li>una quercia danneggiata</li>
+<li>4 pini sani</li>
+<li>3 querce sane</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>A cosa servono:</h2></hgroup><article  id="a-cosa-servono">
 
+<p>A rispondere a 3 specifiche domande:</p>
+
 <ol>
-<li>Riassumere i dati</li>
-<li>Decidere se i due criteri di classificazione sono indipendenti</li>
+<li>I due criteri di classificazione (le due variabili) sono indipendenti?</li>
+<li>Uno dei due valori di una variabile è più comune in uno dei valori della seconda variabile? (c&#39;è una differenza con il punto 2)</li>
+<li>La proporzione di una variabile è uguale a quella dell&#39;altra?</li>
 </ol>
 
-<p>Nelle tavole 2x2 le variabili (o criteri di classificazione) sono di tipo binario:</p>
+<p>Nel nostro caso cerchiamo di tradurre le domande:</p>
 
-<ul>
-<li>Vero/Falso</li>
-<li>Presente/Assente</li>
-<li>Vivo/Morto</li>
-<li>ecc/ecc</li>
-</ul>
+<ol>
+<li>La specie di una pianta e la sua probabilità di essere danneggiata sono indipendenti?</li>
+<li>I danni sono più comuni fra i pini o fra le quercie?</li>
+<li>La proporzione di piante danneggiate è uguale alla proporzione delle quercie?</li>
+</ol>
+
+<p><em>vale la pena di notare che la domanda numero 3 ha poco senso, il caso è opposto però con altri tipi di dati, in particolare quelli di misure ripetute:</em></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-<p>Per ragioni storiche si tende a mettere la variabile indipendente sulle righe:</p>
+<p>Nel caso di dati derivanti da misure pre-post trattamento:</p>
 
-<ul>
-<li><strong>vaccinato / non_vaccinato</strong> sulle righe</li>
-<li><strong>sano / malato</strong> sulle colonne</li>
-</ul>
+<div style="float: left; width: 50%;">
+<p>La tabella:</p>
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:right;">
+
+ID
+
+</th>
+
+<th style="text-align:left;">
+
+Seme
+
+</th>
+
+<th style="text-align:left;">
+
+Semenzale
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Infetto
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Infetto
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Infetto
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Infetto
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Infetto
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+5
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Infetto
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Infetto
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+7
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+9
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+10
+
+</td>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:left;">
+
+Semenzale Sano
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table></div>
+
+<div style="float: right; width: 50%;">
+<p>La tavola di contingenza:</p>
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+Semenzale Infetto
+
+</th>
+
+<th style="text-align:right;">
+
+Semenzale Sano
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Seme Infetto
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Seme Sano
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Le nostre tre domande diventano:</p>
+
+<ol>
+<li>La probabilità di una pianta di essere danneggiata prima e dopo sono indipendenti?<br/><em>In linea di principio non dovrebbero essere per nulla indipendenti, la suscettibilità di una pianta è dovuta a un sacco di fattori diversi</em></li>
+<li>Il danno dopo il trattamento è più comune fra le piante che erano sane prima?<br/><em>La domanda è complessa e apre scenari interessanti.</em><br/></li>
+<li>La proporzione di danni tra &quot;prima&quot;&quot; e &quot;dopo&quot; il trattamento è diversa?<br/><em>Cioè il trattamento è servito a qualcosa???</em></li>
+</ol>
+
+<p><em>in questo contesto la domanda numero 3 è generalmente quella più interessante</em></p>
+
+</article></slide><slide class=""><hgroup><h2>Le risposte</h2></hgroup><article  id="le-risposte">
+
+<p>Le risposte a queste tre domande vengono da tre test statistici differenti:</p>
+
+<ol>
+<li>Test di indipendenza delle variabili</li>
+<li>\(z\)-test per la differenza fra due proporzioni</li>
+<li>Test di McNemar</li>
+</ol>
+
+</article></slide><slide class=""><hgroup><h2><em>Excursus sui campioni appaiati:</em></h2></hgroup><article  id="excursus-sui-campioni-appaiati">
+
+<p>Il problema dei campioni appaiati (<em>paired</em>) viene eluso quasi completamente da questo approccio. In moti testi è scritto che il test di McNamar sia da utilizzare in caso di campioni appaiati.<br/>Come abbiamo visto spesso nel caso di misure ripetute McNamar non è il test <em>giusto</em>, ma il test <em>che risponde alla domanda principale</em>.</p>
+
+<p>C&#39;è però un altro modo di accoppiare i campioni: quando gli elementi hanno una relazione a coppie rispetto ad una variabile che non vogliamo influenzi i nostri calcoli (ad es. diametro del primo elemento con valore 0 = diametro del primo elemento con valore 1)</p>
+
+<p>In questo caso occorre <em>controllare per il fattore di appaiamento</em> nell&#39;analisi, e un test non appaiato può risultare più efficace. Poiché qui la faccenda si complica ed esula dallo scopo di questa lezione. Si consiglia di consultare <a href='https://www.bmj.com/content/352/bmj.i969' title=''><em>Pearce, 2015</em></a>.</p>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>I test di indipendenza delle variabili</h2></hgroup><article  id="i-test-di-indipendenza-delle-variabili">
 
+</article></slide><slide class=""><hgroup><h2>Condizionamento delle tabelle</h2></hgroup><article  id="condizionamento-delle-tabelle">
+
+<p>Il punto chiave per capire quale test sia opportuno o meno usare è il concetto di <em>condizionamento</em> delle tabelle:</p>
+
+<p>Nonostante le tabelle 2x2 si presentino sotto questa forma:</p>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">\(\mathbf{a}\)</th>
+<th align="left">\(\mathbf{b}\)</th>
+</tr>
+<tr class="odd">
+<td align="left">\(\mathbf{c}\)</td>
+<td align="left">\(\mathbf{d}\)</td>
+</tr>
+</table>
+
+<p>una parte fondamentale è ricoperta dai <strong>totali marginali</strong>:</p>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">\(n_1 = a+b\)</th>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">\(n_2 = c+d\)</td>
+</tr>
+<tr class="even">
+<td align="left">\(n_3 = a+c\)</td>
+<td align="left">\(n4 = b+d\)</td>
+<td align="left">\(N = a+b+c+d\)</td>
+</tr>
+</table>
+
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-<p>La domanda a cui i dati possono rispondere è:</p>
+<p>La domanda è: <strong>quanti di questi totali eravamo in grado di prevedere prima che l&#39;esperimento iniziasse?</strong></p>
 
 <ul>
-<li>Le due variabili sono indipendenti?</li>
-<li>Le due popolazioni di una variabile hanno caratteri differenti rispetto all&#39;altra?</li>
+<li>\(N\) non è noto a priori (campioniamo finchè non siamo stanchi, finiamo i soldi, tramonta il sole&#8230;).<br/><em>Normalmente questo non succede, ma se succede&#8230;</em></li>
 </ul>
 
-<p>L&#39;ipotesi nulla \(H_0\) è interpretabile come:</p>
+<p>Questo metodo è noto come campionamento di <em>Poisson</em>, la distribuzione delle variabili segue una distribuzione di <em>Poisson</em>, invece di una più comune distribuzione <em>binomiale</em>.</p>
+
+<p>Nelle tavole di contingenza questo cambia poco perché le variabili di <em>Poisson</em> vengono normalmente trattate come <em>binomiali</em>. È importante però non perdere di vista questo dettaglio per altre analisi.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <ul>
-<li>le due variabili siano indipendenti</li>
-<li>che il campioni siano estratti dalla stessa popolazione</li>
-<li>che la distribuzione rispetto a un criterio di classificazione non venga influenzata dalla classificazione secondo l&#39;altro criterio</li>
+<li><p>\(N\) è stato deciso in ufficio, ma:</p></li>
+<li>Se non conosciamo <strong>né</strong> righe <strong>né</strong> colonne allora la tabella è <em><strong>non condizionata</strong></em></li>
+<li>Se conosciamo solo <strong>o</strong> righe <strong>o</strong> colonne (se per esempio abbiamo impostato noi una delle variabili, magari con 50% dei casi \(A\), e 50% \(B\)) come nella <strong>stragrande maggioranza dei disegni sperimentali</strong>, allora la tabella è di tipo intermedio (<em><strong>singly conditioned</strong></em>)</li>
+<li><p>Se conosciamo tutti i totali marginali, allora la tabella è <em><strong>condizionata</strong></em>. Questo è il caso solo se anche <em>chi</em> fornisce la variabile dipendente conosce in anticipo la distribuzione della variabile indipendente. Questo caso non si verifica quasi mai.</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Test del \(\chi^2\) (chi-quadro) </h2><h3> <em>desueto e spesso sbagliato</em></h3></hgroup><article  id="test-del-chi2-chi-quadro-desueto-e-spesso-sbagliato">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Cosa succede adesso?</p>
+
+<p>Normalmente per ogni tipologia di tabella la letteratura consiglia un diffferente test statistico, e tecnicamente questo è corretto. In generale però possiamo semplificarci abbastanza la vita e dare delle indicazioni di massima.</p>
+
+<p>Segue un breve elenco dei test statistici che dovete conoscere, e quindi delle indicazioni su quando usare l&#39;uno o l&#39;altro.</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+</article></slide><slide class=""><hgroup><h2>Test del \(\chi^2\) (chi-quadro) di Pearson </h2><h3> <em>Pearson&#39;s chi-squared test</em></h3></hgroup><article  id="test-del-chi2-chi-quadro-di-pearson-pearsons-chi-squared-test">
+
+<p><strong>Karl Pearson</strong>, non Egon Pearson</p>
+
+<p>Anche noto come:</p>
+
+<ul>
+<li>test del \(\chi^2\) (chi-quadro)</li>
+<li><em>goodness-of-fit test</em></li>
+<li><em>Pearson&#39;s goodness-of-fit</em></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><em><strong>Desueto e spesso sbagliato</strong></em></p>
 
 <p><strong>Perché esiste?</strong></p>
 
@@ -236,7 +965,7 @@ v_shaped
 
 <ul>
 <li>per comprendere più facilmente l&#39;idea dietro alla matematica</li>
-<li>perché quando ci si riferisce a questo tipo di test in genere si continuano a chiamare \(\chi^2\)</li>
+<li>perché è tuttora la base di questo tipo di analisi</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
@@ -372,13 +1101,24 @@ v_shaped
 
 <p>Se il \(\chi^2\) calcolato è più grande ti quello indicato dalla tabella posso rifiutare la mia \(H_0\).</p>
 
-</article></slide><slide class=""><hgroup><h2>Test esatto di Fisher </h2><h3> desueto e corretto solo in determinati casi</h3></hgroup><article  id="test-esatto-di-fisher-desueto-e-corretto-solo-in-determinati-casi">
+</article></slide><slide class=""><hgroup><h2>Test esatto di Fisher </h2><h3> <em>Fisher&#39;s Exact test</em></h3></hgroup><article  id="test-esatto-di-fisher-fishers-exact-test">
 
-<p><strong>Perché esiste?</strong></p>
+<p><strong>corretto solo in determinati casi</strong></p>
+
+<p>Noto anche come:</p>
+
+<ul>
+<li>Fisher-Irwin&#39;s test<br/></li>
+<li>Fisher-Yates&#39; test</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p><strong>Perché è così usato?</strong></p>
 
 <p>Perché storicamente è il primo test a fornire risultati esatti (anzi che approssimazioni). Fino all&#39;avvento dei calcolatori era molto complesso da calcolare a mano, e anche con i calcolatori per tabelle di contingenza grandi o con N elevati può richiedere metodi di calcolo non banali.</p>
 
-<p>La sua efficacia è tuttora valida solo nel caso si rispettino le caratteristiche sperimentali che hanno portato alla sua creazione: in poche parole <em>le somme marginali della tavola di contingenza devono essere tutte uguali e chiaramente stabilite prima dell&#39;esperimento</em>.</p>
+<p>La sua efficacia è valida solo nel caso si rispettino le caratteristiche sperimentali che hanno portato alla sua creazione: in poche parole <em>le somme marginali della tavola di contingenza devono essere chiaramente stabilite prima dell&#39;esperimento</em>, la tabella deve essere in pratica <strong>condizionata</strong>.</p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
@@ -388,7 +1128,8 @@ v_shaped
 
 <ul>
 <li>rappresenta un passo storico nel calcolo della probabilità</li>
-<li>perché è ancora (a torto) molto utilizzato</li>
+<li>è il test corretto per le tabelle condizionate</li>
+<li>perché è ancora (spesso a torto) molto utilizzato</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
@@ -425,14 +1166,189 @@ v_shaped
 
 <ul>
 <li>chi realizza il controllo conosce la proporzione della variabile indipendente</li>
-<li>**anche <em>la variabile indipendente</em> conosce quella proporzione, e ci si attiene</li>
+<li>anche la variabile indipendente <em>conosce</em> quella proporzione</li>
 </ul>
 
 <p>In pratica questo non succede quasi mai.</p>
 
 <p>L&#39;esperimento per cui il test è stato disegnato è un <em>caposaldo del metodo scientifico</em> e dovrebbe essere noto a tutti: <a href='https://en.wikipedia.org/wiki/Lady_tasting_tea' title=''>Lady tasting tea</a></p>
 
+</article></slide><slide class=""><hgroup><h2>Test del \(\chi^2\) con &#39;N-1&#39; </h2><h3> <em>&#39;N-1&#39; chi-squared test</em></h3></hgroup><article  id="test-del-chi2-con-n-1-n-1-chi-squared-test">
+
+<p>o <strong>Test del \(\chi^2\) di Egon Pearson</strong> (non Karl Pearson)</p>
+
+<p>Equivalente al <strong>Test del \(\chi^2\) di Mantel‐Haenszel</strong> (Mantel‐Haenszel chi‐squared test) per tabelle 2x2 <strong>senza correzioni per la continuità</strong>.</p>
+
+<p>Possiamo considerarlo come una variante del test classico del \(\chi^2\), quello di Karl pearson, in cui però \[\chi^2_{N-1} = \chi^2 * \frac{N-1}{N}\]</p>
+
+<p>Questo test è al momento uno dei più robusti da utilizzare nell&#39;analisi delle tavole 2x2 nel caso in cui non siano condizionate o siano semi-condizionate.</p>
+
+</article></slide><slide class=""><hgroup><h2>Altre cose che succedono nei test di indipendenza delle variabili:</h2></hgroup><article  id="altre-cose-che-succedono-nei-test-di-indipendenza-delle-variabili">
+
+<h3>\(\chi^2\) con la correzione per la continuità di Yates</h3>
+
+<p>Yates voleva correggere il \(\chi^2\) per ottenere valori simili al test esatto di Fisher, perché quello era troppo difficile da calcolare. Ora esistono i computer.</p>
+
+</article></slide><slide class=""><hgroup><h2>Quale test usare?</h2></hgroup><article  id="quale-test-usare">
+
+<p>Il dibattito attorno a quale test utilizzare sembra non terminare mai, ma qui si seguiranno le indicazioni di <a href='https://onlinelibrary.wiley.com/doi/abs/10.1002/sim.2832' title=''>Campbell 2007</a>:</p>
+
+<p><em>NB: le indicazioni non rappresentano lo stato dell&#39;arte, che si può seguire sull&#39;interessante <a href='https://onlinelibrary.wiley.com/doi/abs/10.1002/sim.3169' title=''>nota all&#39;articolo di Andrés</a> ma sono nondimeno un solido punto di partenza.</em></p>
+
+<p>Tabelle non condizionate o semi-condizionate:</p>
+
+<ul>
+<li>Se la tabella contiene uno 0, si usa il <strong>test esatto di Fisher-Irwin secondo la regola di Irwin</strong> (Fisher-Irwin test by Irwin&#39;s rule)</li>
+<li>Altrimenti si usa il <strong>test del \(\chi^2\) con &#39;N-1&#39;</strong> (&#39;N-1&#39; chi-squared test)</li>
+</ul>
+
+<p>Tabelle condizionate:</p>
+
+<ul>
+<li><strong>Test esatto di Fisher.</strong></li>
+</ul>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Test per la differenza di proporzioni:</h2></hgroup><article  id="test-per-la-differenza-di-proporzioni">
+
+</article></slide><slide class=""><hgroup><h2>Quale scegliere:</h2></hgroup><article  id="quale-scegliere">
+
+<p>Storicamente si è sempre utilizzato lo <strong>\(z\)-test per la differenza fra due proporzioni</strong>.<br/>Normalmente però si tratta di campioni enormi, che spesso nei nostri casi mancano.<br/>In generale:</p>
+
+<ul>
+<li>Se tutte le celle sono &gt;30 si può tranquillamente ustilizzare lo <strong>\(z\)-test</strong></li>
+<li>Se tutte le celle sono &gt;10 la <em>letteratura</em> raccomanda comunque lo <strong>\(z\)-test</strong></li>
+<li>Se anche una sola cella ha meno di 10 campioni si passa ai <strong>metodi di simulazione</strong></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>\(z\)-test per la differenza fra due proporzioni </h2><h3> <em>Two proportions \(z\)-test</em></h3></hgroup><article  id="z-test-per-la-differenza-fra-due-proporzioni-two-proportions-z-test">
+
+<p><strong>ASSUNTI</strong>: nessuna casella è minore di 10!</p>
+
+<p>Ricordiamo che lo \(z\)-test è la versione del \(t\)-test che usa direttamente la distribuzione normale invece della \(t\) di Student.</p>
+
+<p>In questo caso non si usa il \(t\)-test, che sembrerebbe il più corretto, avendo per le mani degli stimatori e non i valori noti, perché i numeri sono abbastanza grandi da evitarci il \(t\)-test.<br/>Queti motivi non mi sono chiarissimi, <em>chi avesse voglia di lanciarsi in un po&#39; di simulazioni per vedere le differenze è il benvenuto.</em></p>
+
+</article></slide><slide class=""><hgroup><h2>Metodi di simulazione:</h2></hgroup><article  id="metodi-di-simulazione">
+
+<p>Tornando alla tabella</p>
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+</th>
+
+<th style="text-align:right;">
+
+Pino
+
+</th>
+
+<th style="text-align:right;">
+
+Quercia
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Danno
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+1
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Sano
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<p>vogliamo controllare se i pini sono davvero più malati delle quercie.</p>
+
+<ul>
+<li>L&#39;ipotesi \(H_0\) è che le proporzioni di piante malate derivino da un&#39;unica popolazione che non differenzia rispetto alla specie: \[H_0 : p_{pini} - p_{quercie} = 0\]</li>
+<li>Calcoliamo la differenza di proporzioni dei dati è \[\hat{p}_{pini} - \hat{p}_{quercie} = \frac{2}{4} - \frac{1}{3} \approx 0.167\]</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<p>Il procedimento è piuttosto lineare:</p>
+
+<ol>
+<li>Si prendono 3 carte nere e 7 carte rosse (le nere per le piante malate, le rosse per le piante sane)</li>
+<li>Dividiamo le carte in un gruppo da sei (i pini) e uno da 4 (le quercie)</li>
+<li>Calcoliamo di nuovo \(\hat{p}_{pini} - \hat{p}_{quercie}\) e lo segnamo</li>
+<li>Ripetiamo i passi 2 e 3 un <strong>botto di volte</strong>, tipo 1000.</li>
+<li>Vediamo in che percentuale di casi il valore supera \(0.167\) (che avevamo ottenuto dalla tabella)</li>
+<li>Dividiamo la percentuale per 100 e otteniamo il nostro p-value</li>
+</ol>
+
+<p>In pratica si calcola un p-value di forza bruta. La cosa è fattibile quasi solo con l&#39;ausilio del calcolatore.</p>
+
+</article></slide><slide class=""><hgroup><h2>Altre cose che succedono nei test di differenza fra proporzioni:</h2></hgroup><article  id="altre-cose-che-succedono-nei-test-di-differenza-fra-proporzioni">
+
+<p>Storicamente un approccio comune era il seguente:</p>
+
+<ul>
+<li>Campioni numerosi (&gt;30 per ogni cella): Pearson&#39;s chi-square</li>
+<li>Campioni intermedi (&gt;10 per ogni cella): Yates&#39; chi-square</li>
+<li>Campioni piccoli (anche una cella &lt;10): Fisher&#39;s exact test</li>
+</ul>
+
+<p><em>Upton (1982)</em> e <em>D&#39;Agostino (1988)</em> eliminano dal gioco sia Yates che Fisher</p>
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Test di McNemar</h2></hgroup><article  id="test-di-mcnemar">
+
 </article></slide><slide class=""><hgroup><h2>Per approfondire:</h2></hgroup><article  id="per-approfondire">
+
+<p><a href='http://www.jerrydallal.com/LHSP/ctab.htm' title=''>Una pagina di partenza per le Tavole di Contingenza</a></p>
+
+<p><a href='https://stats.stackexchange.com/a/141450/232657' title=''>Quando usare il test di McNemar</a></p>
 
 <p><a href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.572.632&amp;rep=rep1&amp;type=pdf' title=''>Conditional versus Unconditional Exact Tests for Comparing Two Binomials, 2003</a></p>
 
