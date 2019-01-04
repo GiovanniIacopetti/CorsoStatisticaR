@@ -1,0 +1,66 @@
+table.rmdtable {
+  width: auto;
+  border-collapse: -moz-initial;
+  border-collapse: initial;
+  border-spacing: 0px;
+  border-bottom: 0px solid #797979;
+}
+
+
+
+table.rmdtable th,
+table.rmdtable td {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  background: inherit;
+  font-size: inherit;
+  padding: 1em 0.5em;
+}
+
+
+/* Other stuff to erase the old parameters */
+
+table.rmdtable tr > td:first-child {
+  font-weight: inherit;
+  color: inherit;
+}
+
+table.rmdtable tr:nth-child(odd) {
+  background-color: inherit;
+}
+
+table.rmdtable td.highlight {
+  color: #515151;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #ffd14d), color-stop(80%, #f6c000)) no-repeat;
+  background: -webkit-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
+  background: -moz-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
+  background: -o-linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
+  background: linear-gradient(top, #ffd14d 40%, #f6c000 80%) no-repeat;
+}
+
+table.rmdtable.rows {
+  border-bottom: none;
+  border-right: 0px solid #797979;
+}
+
+
+/* END OLD ERASER*/
+
+
+table.rmdtable {
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+table.rmdtable th,
+table.rmdtable td {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 2px solid #c0c0c0;
+    text-align: center;
+}
