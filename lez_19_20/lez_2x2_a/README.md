@@ -19,7 +19,17 @@ Lez\_2x2: Tavole (o tabelle) di contingenza. La teoria
     -   [Metodi di simulazione:](#metodi-di-simulazione)
     -   [Altre cose che succedono nei test di differenza fra proporzioni:](#altre-cose-che-succedono-nei-test-di-differenza-fra-proporzioni)
 -   [Test di McNemar](#test-di-mcnemar)
-    -   [Per approfondire:](#per-approfondire)
+    -   [Come testare l'*H*<sub>0</sub>](#come-testare-lh_0)
+    -   [L'approccio tradizionale](#lapproccio-tradizionale)
+    -   [L'approccio suggerito](#lapproccio-suggerito)
+    -   [Test asintotico di McNemar](#test-asintotico-di-mcnemar)
+    -   [Test asintotico di McNemar con correzione per la continuità](#test-asintotico-di-mcnemar-con-correzione-per-la-continuità)
+    -   [Binomiale esatta condizionata](#binomiale-esatta-condizionata)
+    -   [Test Esatto non condizionato](#test-esatto-non-condizionato)
+    -   [mid-*p* test di McNemar](#mid-p-test-di-mcnemar)
+-   [Altri test per le tavole 2x2](#altri-test-per-le-tavole-2x2)
+    -   [Test di Cochran–Mantel–Haenszel di indipendenza per test ripetuti](#test-di-cochranmantelhaenszel-di-indipendenza-per-test-ripetuti)
+-   [Per approfondire:](#per-approfondire)
 
 Tabelle di contingenza 2x2 | che faccia hanno
 ---------------------------------------------
@@ -223,7 +233,7 @@ Sano
 </tbody>
 </table>
 
-***Non è rilevante quale variabile finisce sulle righe e quale sulle colonne***
+**Non è rilevante quale variabile finisce sulle righe e quale sulle colonne**
 
 I numeri nella tabella rappresentano il numero dei campioni che presentano contemporaneamente le aratteristiche indicate dalla loro riga e dalla loro colonna:
 
@@ -249,7 +259,7 @@ Nel nostro caso cerchiamo di tradurre le domande:
 2.  I danni sono più comuni fra i pini o fra le quercie?
 3.  La proporzione di piante danneggiate è uguale alla proporzione delle quercie?
 
-*vale la pena di notare che la domanda numero 3 ha poco senso, il caso è opposto però con altri tipi di dati, in particolare quelli di misure ripetute:*
+**vale la pena di notare che la domanda numero 3 ha poco senso, il caso è opposto però con altri tipi di dati, in particolare quelli di misure ripetute:**
 
 ------------------------------------------------------------------------
 
@@ -437,7 +447,7 @@ Le nostre tre domande diventano:
 3.  La proporzione di danni tra "prima"" e "dopo" il trattamento è diversa?
     *Cioè il trattamento è servito a qualcosa???*
 
-*in questo contesto la domanda numero 3 è generalmente quella più interessante*
+**in questo contesto la domanda numero 3 è generalmente quella più interessante**
 
 Le risposte
 -----------
@@ -452,11 +462,11 @@ Le risposte a queste tre domande vengono da tre test statistici differenti:
 ---------------------------------
 
 Il problema dei campioni appaiati (*paired*) viene eluso quasi completamente da questo approccio. In moti testi è scritto che il test di McNamar sia da utilizzare in caso di campioni appaiati.
-Come abbiamo visto spesso nel caso di misure ripetute McNamar non è il test *giusto*, ma il test *che risponde alla domanda principale*.
+Come abbiamo visto spesso nel caso di misure ripetute McNamar non è il test **giusto**, ma il test **che risponde alla domanda principale**.
 
 C'è però un altro modo di accoppiare i campioni: quando gli elementi hanno una relazione a coppie rispetto ad una variabile che non vogliamo influenzi i nostri calcoli (ad es. diametro del primo elemento con valore 0 = diametro del primo elemento con valore 1)
 
-In questo caso occorre *controllare per il fattore di appaiamento* nell'analisi, e un test non appaiato può risultare più efficace. Poiché qui la faccenda si complica ed esula dallo scopo di questa lezione. Si consiglia di consultare [*Pearce, 2015*](https://www.bmj.com/content/352/bmj.i969).
+In questo caso occorre **controllare per il fattore di appaiamento** nell'analisi, e un test non appaiato può risultare più efficace. Poiché qui la faccenda si complica ed esula dallo scopo di questa lezione. Si consiglia di consultare [*Pearce, 2015*](https://www.bmj.com/content/352/bmj.i969).
 
 I test di indipendenza delle variabili
 ======================================
@@ -464,7 +474,7 @@ I test di indipendenza delle variabili
 Condizionamento delle tabelle
 -----------------------------
 
-Il punto chiave per capire quale test sia opportuno o meno usare è il concetto di *condizionamento* delle tabelle:
+Il punto chiave per capire quale test sia opportuno o meno usare è il concetto di **condizionamento** delle tabelle:
 
 Nonostante le tabelle 2x2 si presentino sotto questa forma:
 
@@ -484,7 +494,7 @@ una parte fondamentale è ricoperta dai **totali marginali**:
 La domanda è: **quanti di questi totali eravamo in grado di prevedere prima che l'esperimento iniziasse?**
 
 -   *N* non è noto a priori (campioniamo finchè non siamo stanchi, finiamo i soldi, tramonta il sole...).
-    *Normalmente questo non succede, ma se succede...*
+    **Normalmente questo non succede, ma se succede???**
 
 Questo metodo è noto come campionamento di *Poisson*, la distribuzione delle variabili segue una distribuzione di *Poisson*, invece di una più comune distribuzione *binomiale*.
 
@@ -494,9 +504,9 @@ Nelle tavole di contingenza questo cambia poco perché le variabili di *Poisson*
 
 -   *N* è stato deciso in ufficio, ma:
 
--   Se non conosciamo **né** righe **né** colonne allora la tabella è ***non condizionata***
--   Se conosciamo solo **o** righe **o** colonne (se per esempio abbiamo impostato noi una delle variabili, magari con 50% dei casi *A*, e 50% *B*) come nella **stragrande maggioranza dei disegni sperimentali**, allora la tabella è di tipo intermedio (***singly conditioned***)
--   Se conosciamo tutti i totali marginali, allora la tabella è ***condizionata***. Questo è il caso solo se anche *chi* fornisce la variabile dipendente conosce in anticipo la distribuzione della variabile indipendente. Questo caso non si verifica quasi mai.
+-   Se non conosciamo **né** righe **né** colonne allora la tabella è **non condizionata** (*unconditional*). Si pplicano in questo caso dei **modelli multinomiali non condizionati** (*unconditional multinomial models*).
+-   Se conosciamo solo **o** righe **o** colonne (se per esempio abbiamo impostato noi una delle variabili, magari con 50% dei casi *A*, e 50% *B*) come nella **stragrande maggioranza dei disegni sperimentali**, allora la tabella è di tipo **una-volta condizionata** (***singly conditioned***) o se non si vuole andare troppo per il sottile, si considera sempre **non condizionata**. In questo caso si applicano **modelli binomiali non condizionati** (*unconditional binomial models*).
+-   Se conosciamo tutti i totali marginali, allora la tabella è **condizionata** (*conditional*). Questo è il caso solo se anche *chi* fornisce la variabile dipendente conosce in anticipo la distribuzione della variabile indipendente. Questo caso non si verifica quasi mai. In questo caso si applicano i **modelli condizionati** (*conditional test*).
 
 ------------------------------------------------------------------------
 
@@ -519,13 +529,13 @@ Anche noto come:
 
 ------------------------------------------------------------------------
 
-***Desueto e spesso sbagliato***
+**Desueto e spesso sbagliato**
 
 **Perché esiste?**
 
 Perché prima dell'avvento dei calcolatori era l'unico calcolabile a mano in tempi ragionevoli. Ha dei grossi problemi quando N è piccolo (&lt;40) e quando alcune caselle hanno numeri piccoli (&lt;5). Rappresenta comunque un'approssimazione del valore esatto (che oggi è possibile calcolare senza sforzo).
 
-***N.B. non c'è alcun motivo per continuare a usarlo!***
+**N.B. non c'è alcun motivo per continuare a usarlo!**
 
 **Perché è importante conoscerlo:**
 
@@ -565,7 +575,7 @@ Dalla tabella dei totali marginali...
 | $c\_{att}=\\frac{n\_2\*n\_3}{N}$ | $d\_{att}=\\frac{n\_2\*n\_4}{N}$ | **n**<sub>**2**</sub> |
 | **n**<sub>**3**</sub>            | **n**<sub>**4**</sub>            | **N**                 |
 
-### *!!! Gradi di libertà !!!*
+### **!!! Gradi di libertà !!!**
 
 Vale la pena notare che i totali marginali sono considerati il vero dato certo del problema. in questo caso il grado di libertà della tabella (cioè di *a*, *b*, *c*, e *d*) è in realtà uno solo: se variassimo *a*, varieremmo di conseguenza anche tutti gli altri valori.
 
@@ -618,11 +628,11 @@ Noto anche come:
 
 Perché storicamente è il primo test a fornire risultati esatti (anzi che approssimazioni). Fino all'avvento dei calcolatori era molto complesso da calcolare a mano, e anche con i calcolatori per tabelle di contingenza grandi o con N elevati può richiedere metodi di calcolo non banali.
 
-La sua efficacia è valida solo nel caso si rispettino le caratteristiche sperimentali che hanno portato alla sua creazione: in poche parole *le somme marginali della tavola di contingenza devono essere chiaramente stabilite prima dell'esperimento*, la tabella deve essere in pratica **condizionata**.
+La sua efficacia è valida solo nel caso si rispettino le caratteristiche sperimentali che hanno portato alla sua creazione: in poche parole **le somme marginali della tavola di contingenza devono essere chiaramente stabilite prima dell'esperimento**, la tabella deve essere in pratica **condizionata**.
 
 ------------------------------------------------------------------------
 
-***N.B. non c'è alcun motivo per continuare a usarlo!***
+**N.B. non c'è alcun motivo per continuare a usarlo!**
 
 **Perché è importante conoscerlo:**
 
@@ -651,11 +661,11 @@ Dov'è il problema del test di Fisher?
 Il proplema è che il test è pensato per un tipo di esperimento particolare, in cui i totali marginali sono noti a priori (nell'esperimento di Fisher sono anche uguali, ma la formula non lo richiede), cosa comporta nella pratica questo:
 
 -   chi realizza il controllo conosce la proporzione della variabile indipendente
--   anche la variabile indipendente *conosce* quella proporzione
+-   anche la variabile indipendente **conosce, o è obbligata** a tenere quella proporzione
 
 In pratica questo non succede quasi mai.
 
-L'esperimento per cui il test è stato disegnato è un *caposaldo del metodo scientifico* e dovrebbe essere noto a tutti: [Lady tasting tea](https://en.wikipedia.org/wiki/Lady_tasting_tea)
+L'esperimento per cui il test è stato disegnato è un **caposaldo del metodo scientifico** e dovrebbe essere noto a tutti: [Lady tasting tea](https://en.wikipedia.org/wiki/Lady_tasting_tea)
 
 Test del *χ*<sup>2</sup> con 'N-1' | *'N-1' chi-squared test*
 -------------------------------------------------------------
@@ -675,6 +685,18 @@ Altre cose che succedono nei test di indipendenza delle variabili:
 ### *χ*<sup>2</sup> con la correzione per la continuità di Yates
 
 Yates voleva correggere il *χ*<sup>2</sup> per ottenere valori simili al test esatto di Fisher, perché quello era troppo difficile da calcolare. Ora esistono i computer.
+
+### Test esatti non condizionali
+
+I test esatti non condizionali possono essere piuttosto complessi da calcolare, anche per i computer. Può valere la pena darci un'occhiata se si è interessati.
+
+R mette a disposizione un pratico package per testarne l'efficacia.
+
+[Package 'Exact'](https://cran.r-project.org/web/packages/Exact/Exact.pdf)
+
+### Test di Cochran–Mantel–Haenszel per l'indipendenza
+
+Nonostante si chiami così il Cochran–Mantel–Haenszel Test (o spesso solo statistica di Mantel–Haenszel), non misura l'indipendenza delle variabili, ma di fatto per le tabelle 2x2 è esattamente uguale al Test Asintotico di McNemar, valutando la differenza di proporzioni fra i totali marginali.
 
 Quale test usare?
 -----------------
@@ -703,7 +725,7 @@ Normalmente però si tratta di campioni enormi, che spesso nei nostri casi manca
 In generale:
 
 -   Se tutte le celle sono &gt;30 si può tranquillamente ustilizzare lo ***z*-test**
--   Se tutte le celle sono &gt;10 la *letteratura* raccomanda comunque lo ***z*-test**
+-   Se tutte le celle sono &gt;10 la letteratura raccomanda comunque lo ***z*-test**
 -   Se anche una sola cella ha meno di 10 campioni si passa ai **metodi di simulazione**
 
 *z*-test per la differenza fra due proporzioni | *Two proportions *z*-test*
@@ -714,7 +736,7 @@ In generale:
 Ricordiamo che lo *z*-test è la versione del *t*-test che usa direttamente la distribuzione normale invece della *t* di Student.
 
 In questo caso non si usa il *t*-test, che sembrerebbe il più corretto, avendo per le mani degli stimatori e non i valori noti, perché i numeri sono abbastanza grandi da evitarci il *t*-test.
-Queti motivi non mi sono chiarissimi, *chi avesse voglia di lanciarsi in un po' di simulazioni per vedere le differenze è il benvenuto.*
+Queti motivi non mi sono chiarissimi, **chi avesse voglia di lanciarsi in un po' di simulazioni per vedere le differenze è il benvenuto**.
 
 Metodi di simulazione:
 ----------------------
@@ -794,11 +816,145 @@ Storicamente un approccio comune era il seguente:
 Test di McNemar
 ===============
 
+------------------------------------------------------------------------
+
+In questo caso l'ipotesi nulla riguarda i totali marginali:
+
+| *a*                               | *b*                               | **n**<sub>**1**</sub> = *a* + *b* |
+|-----------------------------------|-----------------------------------|-----------------------------------|
+| *c*                               | *d*                               | **n**<sub>**2**</sub> = *c* + *d* |
+| **n**<sub>**3**</sub> = *a* + *c* | **n**<sub>**4**</sub> = *b* + *d* | *N* = *a* + *b* + *c* + *d*       |
+
+L'ipotesi *H*<sub>0</sub> è che il rapporto fra le probabilità dei valori di una variabile sia uguale al rapporto dei valori dell'altra:
+
+$$H\_0 : \\frac{p\_{n1}}{p\_{n2}} = \\frac{p\_{n3}}{p\_{n4}}$$
+
+Sono probabilità, quindi il loro totale è sempre 1, quindi queste frazioni possono essere uguali solo se:
+
+*p*<sub>*n*1</sub> = *p*<sub>*n*3</sub> ∧ *p*<sub>*n*2</sub> = *p*<sub>*n*4</sub>
+
+------------------------------------------------------------------------
+
+ma
+*p*<sub>*n*1</sub> = *p*<sub>*a*</sub> + *p*<sub>*b*</sub>
+ e così via, se si sostituiscono nell' equazione precedente si arriva a:
+
+*p*<sub>*a*</sub> + *p*<sub>*b*</sub> = *p*<sub>*a*</sub> + *p*<sub>*c*</sub> ∧ *p*<sub>*c*</sub> + *p*<sub>*d*</sub> = *p*<sub>*b*</sub> + *p*<sub>*d*</sub>
+
+quindi l'ipotesi nulla è diventata:
+*H*<sub>0</sub> : *p*<sub>*b*</sub> = *p*<sub>*c*</sub>
+
+Come testare l'*H*<sub>0</sub>
+------------------------------
+
+Ci sono diversi test che sono stati utilizzati:
+
+-   Test asintotico di McNemar: *Asymptotic McNemar Test Statistic*
+-   Test asintotico di McNemar con correzione per la continuità: *Asymptotic McNemar Test Statistic with continuity correction*
+-   Binomiale Esatta Condizionata (o test di McNemar esatto condizionato): *Exact Conditional Binomial (McNemar Exact Conditional Test)*
+-   Test Esatto non Condizionato: *Exact Unconditional Test*
+-   Mid-*p* test di McNemar (o test mid-*p* binomiale): *mid-*p* McNemar test (mid-*p* binomial test)*
+
+------------------------------------------------------------------------
+
+-   Test asintotico di McNemar: **il più potente**
+-   Test asintotico di McNemar con correzione per la continuità: **abbandonato**
+-   Binomiale Esatta Condizionata: **abbandonata**
+-   Test Esatto non Condizionato: **il migliore, ma molto complesso da calcolare**
+-   Mid-*p* test di McNemar: **il più affidabile**
+
+L'approccio tradizionale
+------------------------
+
+-   Test asintotico di McNemar: se *b* + *c* &gt; 25
+-   Binomiale Esatta Condizionata se *b* + *c* &lt; 25
+
+L'approccio suggerito
+---------------------
+
+-   Test asintotico di McNemar: se i valori dei p-value non sono troppo delicati e *b* + *c* &gt; 6
+-   Mid-*p* test: se si cercano risultati più stabili e *b* + *c* &gt; 6
+-   Test esatto non condizionato: se *b* + *c* &lt; 6
+
+Test asintotico di McNemar
+--------------------------
+
+Il test per verificare questa equivalenza segue (manco a dirlo) la distribuzione del *χ*<sup>2</sup>:
+
+$$\\chi^2 = \\frac{(b-c)^2}{b+c}$$
+
+**MA**, *χ*<sup>2</sup> segue la distribuzione del chi-quadro (con un grado di libertà) solo se i campioni sono abbastanza numerosi (*b* + *c* &gt; 6)
+
+Test asintotico di McNemar con correzione per la continuità
+-----------------------------------------------------------
+
+Idem, ma calcola il *χ*<sup>2</sup> con una formula modificata:
+$$\\chi^2 = \\frac{(|b-c|-1)^2}{b+c}$$
+
+**Questo metodo è sconsigliato**
+
+Binomiale esatta condizionata
+-----------------------------
+
+per una coda è semplicemente la distribuzione cumulativa binomiale (*H*<sub>1</sub> : *p*<sub>*b*</sub> ≶ *p*<sub>*c*</sub>):
+
+$$p.value = \\sum\_{i=b}^{n} \\binom{n}{i} p^i(1-p)^{n-i} $$
+
+per le due code (*H*<sub>1</sub> : *p*<sub>*b*</sub> ≠ *p*<sub>*c*</sub>)
+
+$$p.value = 2 \\sum\_{i=b}^{n} \\binom{n}{i} p^i(1-p)^{n-i} $$
+
+poiché *p* = 0.5 e *n* = *b* + *c*, l'equazione diventa:
+
+$$p.value = 2 \\sum\_{i=b}^{b+c} \\binom{b+c}{i} 0.5^i(1-0.5)^{b+c-i} $$
+
+**Questo metodo è sconsigliato**
+
+Test Esatto non condizionato
+----------------------------
+
+mid-*p* test di McNemar
+-----------------------
+
+Sviluppato a partire dalla binomiale esatta condizionata, dove, per le due code:
+
+$$p.value = 2 \\sum\_{i=b}^{n} \\binom{n}{i} p^i(1-p)^{n-i} $$
+
+come in tutti i mid-*p* (inventati da Fisher), il mid-*p*-value per una coda è uguale al *p*-value di una coda meno la metà della probabilità della configurazione trovata.
+
+------------------------------------------------------------------------
+
+Nel nostro caso per una coda:
+
+$$p.value = \\left( \\sum\_{i=b}^{n} \\binom{n}{i} p^i(1-p)^{n-i} \\right) - \\left(\\frac{1}{2} \\binom{n}{b} p^b(1-p)^{n-b} \\right)$$
+
+E per due code:
+
+$$p.value = \\left( 2\\sum\_{i=b}^{n} \\binom{n}{i} p^i(1-p)^{n-i} \\right) - \\left( \\binom{n}{b} p^b(1-p)^{n-b} \\right)$$
+
+Altri test per le tavole 2x2
+============================
+
+Test di Cochran–Mantel–Haenszel di indipendenza per test ripetuti
+-----------------------------------------------------------------
+
+Questo test è utile per valutare se fra numerose tabelle di contingenza 2x2 ci sia indipendenza, oppure se sia possibile cumulare i dati in un'unica tabella.
+
+Vedi [Cochran–Mantel–Haenszel test for repeated tests of independence](http://www.biostathandbook.com/cmh.html)
+
 Per approfondire:
------------------
+=================
 
 [Una pagina di partenza per le Tavole di Contingenza](http://www.jerrydallal.com/LHSP/ctab.htm)
 
 [Quando usare il test di McNemar](https://stats.stackexchange.com/a/141450/232657)
 
 [Conditional versus Unconditional Exact Tests for Comparing Two Binomials, 2003](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.572.632&rep=rep1&type=pdf)
+
+[The McNemar test for binary matched-pairs data: mid-p and asymptotic are better than exact conditional](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3716987/)
+
+[Cochran–Mantel–Haenszel test for repeated tests of independence](http://www.biostathandbook.com/cmh.html)
+
+[The 2 x 2 matched-pairs trial: exact unconditional design and analysis.](https://www.ncbi.nlm.nih.gov/pubmed/1912252)
+
+[APPROXIMATING POWER OF THE UNCONDITIONAL TEST FOR CORRELATED BINARY PAIRS](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3898531/)

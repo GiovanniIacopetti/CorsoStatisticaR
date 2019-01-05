@@ -1,21 +1,21 @@
 ---
 title: "Lez_2x2: Tavole (o tabelle) di contingenza. La pratica"
 output: 
+        github_document:
+                toc: TRUE
+                toc_depth: 2 # default = 3
         ioslides_presentation:
                 # rmdtable.css works just on the pandoc-made tables (the ones with |---|)
                 widescreen: true
                 df_print: paged
                 logo: files/logo.png
                 css: [files/gio_milligram.css, files/rmdtable.css] # milligram is modified by me
-        github_document:
-                toc: TRUE
-                toc_depth: 2 # default = 3
 always_allow_html: yes
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE,
+knitr::opts_chunk$set(cache = TRUE,
                       echo = TRUE,
                       include = TRUE,
                       message = TRUE,
