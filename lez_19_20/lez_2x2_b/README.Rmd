@@ -1,15 +1,15 @@
 ---
 title: "Lez_2x2: Tavole (o tabelle) di contingenza. La pratica"
 output: 
-        github_document:
-                toc: TRUE
-                toc_depth: 2 # default = 3
         ioslides_presentation:
                 # rmdtable.css works just on the pandoc-made tables (the ones with |---|)
                 widescreen: true
                 df_print: paged
                 logo: files/logo.png
                 css: [files/gio_milligram.css, files/rmdtable.css] # milligram is modified by me
+        github_document:
+                toc: TRUE
+                toc_depth: 2 # default = 3
 always_allow_html: yes
 ---
 
@@ -265,6 +265,57 @@ inference(CLEVIT, PSEMEN, data = data, type = "ht", statistic = "proportion",
           show_var_types = FALSE, show_summ_stats = FALSE, show_res = FALSE)
 ```
 
+## 3. Test di McNemar
+
+```{r, echo=FALSE}
+mcnemar_midp <- function(contingency_table_2x2, tail = "two", verbose = TRUE) {
+    # from [kylebgorman mcnemar.midp function](https://gist.github.com/kylebgorman/4e3ac8b6b67bccbcff8e)
+    
+    # Compute McNemar's test using the "mid-p" variant suggested by:
+    #  
+    # M.W. Fagerland, S. Lydersen, P. Laake. 2013. The McNemar test for 
+    # binary matched-pairs data: Mid-p and asymptotic are better than 
+    # exact conditional. BMC Medical Research Methodology 13: 91.
+    
+    d1 <- dim(contingency_table_2x2)
+    d2 <- c(2,2)
+    good <- all.equal(d1, d2)
+    
+    if (!good) stop("\nThis test is valid only for 2x2 tables\n")
+    
+    b <- contingency_table_2x2[1, 2]
+    c <- contingency_table_2x2[2, 1]
+    
+    if (b+c < 6) {warning("When 'b' + 'c' cells are below 6, the literature suggest other tests\n")}
+    
+    n <- b + c
+    x <- min(b, c)
+    p <- 2 * pbinom(x, n, .5, lower.tail = TRUE)
+    if (tail == "two") {midp <- p - dbinom(x, n, .5)}
+    if (tail == "one") {midp <- (p - dbinom(x, n, .5))/2}
+    
+    if (verbose) {writeLines(paste0("mid-p McNemar test, ",
+                                    tail,
+                                    "-sided version\n    mid-p-value = ",
+                                    round(midp, 3),
+                                    "\n"))
+    }
+    
+    result <- list(mid.p = midp, type = paste0(tail, "-sided"))
+    
+    return(invisible(result))
+}
+```
+
+Poichè $c + d > 6$ possiamo utilizzare il **mid-$p$ Test di McNemar**, in questo caso abbiamo scritto una funzione apposita: `mcnemar_midp()`
+
+```{r}
+mcnemar_midp(tavola_PSEMEN_CLEVIT)$mid.p
+```
+
+Il $p$-value ottenuto supera 0.05, quindi non possiamo rifiutare l'$H_0$.
+
+Le proporzioni di **Douglasia** non sono significativamente differenti da quelle della **vitalba**.
 
 # Confrontare variabili multiple
 
@@ -537,4 +588,101 @@ adjusted_p_values_differenza_di_proporzioni <- p.adjust(p_value_differenza_di_pr
 sort(adjusted_p_values_differenza_di_proporzioni)
 ```
 
+## 3. Test di McNemar
+
+Il discriminante per usare un metodo o l'altro in questo test è che, data una tavola di contingenza
+
+|$a$|$b$|
+|---|---|
+|$c$|$d$|
+
+
+* se $c + d > 6$, allora usiamo il _mid-$p$ test di McNemar_
+* se $c + d \leq 6$, allora useremo un **Test Esatto Non Condizionato**
+
+```{r}
+limit <- 10 # impostiamo il limite a 10, per motivi didattici (e volendo anche cautelativi)
+
+tavole_di_contingenza[[1]]
+tavole_di_contingenza[[1]][1, 2] + tavole_di_contingenza[[1]][2, 1] > limit # controllo cosa succede al primo elemento
+tavole_di_contingenza[[9]]
+tavole_di_contingenza[[9]][1, 2] + tavole_di_contingenza[[9]][2, 1] > limit 
+```
+
+---
+
+Adesso sono pronto ad applicarlo alla `list` 
+
+```{r}
+specie_per_mcnemar <- lapply(tavole_di_contingenza, function(x) x[1, 2] + x[2, 1] > limit)
+
+specie_per_test_esatto <- lapply(tavole_di_contingenza, function(x) x[1, 2] + x[2, 1] <= limit)
+```
+
+---
+
+In questo caso ci chiediamo se la proporzione di plot dove c'è la _Douglasia_ è uguale o meno a quella in cui troviamo le altre specie.
+
+* L'ipotesi $H_0$ è che le proporzioni di plot dove c'è la _Douglasia_ sia uguale a quella in cui troviamo le altre specie, in generale possiamo dire che tutte le specie abbiano la stessa presenza della _Douglasia_
+
+---
+
+```{r}
+tavole_per_mcnemar <- tavole_di_contingenza[specie_per_mcnemar$Value]
+tavole_per_test_esatto <- tavole_di_contingenza[specie_per_test_esatto$Value]
+```
+
+Si applica il _**mid-$p$ Test**_ a chi si può applicare:
+
+```{r}
+mid_p_mcnemar <- lapply(tavole_per_mcnemar, 
+                        function(x) mcnemar_midp(x, verbose = FALSE)$mid.p)
+```
+
+Si applica il **test esatto non condizionale** agli altri:
+
+```{r}
+library(rcompanion)
+p_val_symmetry <- lapply(tavole_per_test_esatto, 
+                         function(x) nominalSymmetryTest(x, digits = 3))
+```
+
+---
+
+Dobbiamo scoprire come è fatta la struttura dell'oggetto sputato fuori dalla funzione `nominalSymmtryTest()` per andare a recuperare i p_value:
+
+```{r}
+str(p_val_symmetry[1])
+```
+
+```{r}
+p_val_symmetry[[1]]
+```
+
+---
+
+```{r}
+p_val_symmetry[[1]]$Global.test.for.symmetry
+```
+
+```{r}
+p_val_symmetry[[1]]$Global.test.for.symmetry$p.value
+```
+
+Ecco dove sono i p-value, andiamo a recuperarli
+
+```{r}
+p_val_symmetry <- lapply(p_val_symmetry, function(x) x$Global.test.for.symmetry$p.value)
+```
+
+---
+
+Si rimettono insieme tutti i p-value e si correggono per le correlazioni multiple:
+
+```{r}
+p_generali_mcnemar <- c(mid_p_mcnemar, p_val_symmetry)
+adj_p_mcnemar <- p.adjust(p_generali_mcnemar, method = "BH")
+sort(round(adj_p_mcnemar, 5))
+
+```
 

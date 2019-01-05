@@ -8,6 +8,7 @@ Lez\_2x2: Tavole (o tabelle) di contingenza. La pratica
 -   [P-hacking | cose che tutti fanno ma nessuno lo dice!](#p-hacking-cose-che-tutti-fanno-ma-nessuno-lo-dice)
 -   [1. Test di indipendenza delle variabili](#test-di-indipendenza-delle-variabili)
 -   [2. Test per la differenza di proporzioni](#test-per-la-differenza-di-proporzioni)
+-   [3. Test di McNemar](#test-di-mcnemar)
 -   [Confrontare variabili multiple](#confrontare-variabili-multiple)
     -   [Le tabelle di contingenza](#le-tabelle-di-contingenza)
     -   [P-hacking | cose che tutti fanno ma nessuno lo dice!](#p-hacking-cose-che-tutti-fanno-ma-nessuno-lo-dice-1)
@@ -326,6 +327,21 @@ inference(CLEVIT, PSEMEN, data = data, type = "ht", statistic = "proportion",
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-19-1.png)
+
+3. Test di McNemar
+------------------
+
+Poichè *c* + *d* &gt; 6 possiamo utilizzare il **mid-*p* Test di McNemar**, in questo caso abbiamo scritto una funzione apposita: `mcnemar_midp()`
+
+``` r
+mcnemar_midp(tavola_PSEMEN_CLEVIT)$mid.p
+```
+
+    ## 
+    ## mid-p McNemar test, two-sided version
+    ##     mid-p-value = 0.167
+
+    ## [1] 0.1670685
 
 Confrontare variabili multiple
 ==============================

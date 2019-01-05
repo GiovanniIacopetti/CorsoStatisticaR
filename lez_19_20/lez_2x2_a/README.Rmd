@@ -618,7 +618,9 @@ $$p.value = 2 \sum_{i=b}^{b+c} \binom{b+c}{i} 0.5^i(1-0.5)^{b+c-i} $$
 
 ## Test Esatto non condizionato
 
-A quanto pare la storia dei test esatti non condizionati per la differenza di proporzioni sui totali marginali è tutt'altro che conclusa:
+Il test esatto non condizionato é uguale a un test esatto binomiale sulle celle discordanti ($b$ e $c$).
+
+A quanto pare però la storia dei test esatti non condizionati per la differenza di proporzioni sui totali marginali è tutt'altro che conclusa, per chi volesse approfondire:
 
 [The 2 x 2 matched-pairs trial: exact unconditional design and analysis.](https://www.ncbi.nlm.nih.gov/pubmed/1912252)
 
@@ -626,7 +628,8 @@ A quanto pare la storia dei test esatti non condizionati per la differenza di pr
 
 [A New Exact and More Powerful Unconditional Test of No Treatment Effect from Binary Matched Pairs](https://www.researchgate.net/publication/5799494_A_New_Exact_and_More_Powerful_Unconditional_Test_of_No_Treatment_Effect_from_Binary_Matched_Pairs)
 
-Comunque il test esatto non condizionato é uguale a un test esatto binomiale sulle celle discordanti ($b$ e $c$).
+Questi articoli mancano ancora di un supporto informatico per applicare queste innovazioni.
+
 
 
 ## mid-$p$ test di McNemar
