@@ -1,0 +1,268 @@
+---
+title: "lez_lm_a: i modelli lineari. La Teoria"
+output: 
+        ioslides_presentation:
+                widescreen: true
+                df_print: paged
+                logo: files/logo.png
+                css: [files/gio_milligram.css, files/rmdtable.css] # milligram is modified by me
+                # rmdtable.css works just on the pandoc-made tables (the ones with |---|)
+        github_document:
+                toc: TRUE
+                toc_depth: 2 # default = 3
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE,
+                      echo = FALSE,
+                      include = TRUE,
+                      message = TRUE,
+                      warning = TRUE,
+                      fig.width = 7,
+                      fig.height = 4)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+
+# Set plotting to bw plot default, but with transparent background elements.  
+# Note transparency requires the panel.background, plot.background, and device background all be set!
+library(ggplot2) 
+theme_set(theme_bw(base_size=12))
+theme_update(panel.background = element_rect(fill = "transparent", colour = NA),
+plot.background = element_rect(fill = "transparent", colour = NA))
+opts_chunk$set(dev.args=list(bg="transparent"))
+# Set a color-blind friendly pallette
+# adapted from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+cbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
+"#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+library(knitr)
+
+options("kableExtra.html.bsTable" = T) # forces the package to use the boostrap css
+library(kableExtra)
+```
+
+```{r, include=FALSE}
+# shortcut for nice tables formatting
+
+kab <- function(table,
+                position = "center", 
+                full_width = TRUE, 
+                colnames_rotation = 0, 
+                SB = TRUE,
+                width = "100%",
+                height = "100%",
+                ...) {
+    kable(table, ...) %>%
+        kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                     position = position,
+                full_width = full_width,
+                font_size = 18) %>%
+        row_spec(row = 0, angle = colnames_rotation) %>%
+        scroll_box(width = width, height = height)
+}
+```
+
+
+```{r}
+ggplot_lm <- function(lm, data, resid = FALSE) {
+    # print(lm$coefficients)
+    
+    int <- 0
+    slope <- 0
+    no_intercept <- FALSE
+    
+    int <- lm$coefficients["(Intercept)"]
+    if (is.na(int)) {
+        int <- 0
+        slope <- lm$coefficients[1]
+    
+    }
+    # print(int)
+    
+    if (length(lm$coefficients) == 2) slope <- lm$coefficients[2]
+    # print(slope)
+    
+    y_name <- as.character(formula(lm)[[2]])
+    x_name <- as.character(formula(lm)[[3]])
+    
+    if (length(x_name) == 3) {
+        x_name <- x_name[[2]]
+        no_intercept <- TRUE
+    }
+    
+    if (x_name == "1") {
+        x_name <- "index"
+    }
+    
+    data$index <- seq(1, nrow(data))
+    
+    if (resid) {
+        ### if I want to predict for new values
+        
+        # df <- data
+        # df[[y_name]] <- NA
+        # new.data <-  predict(lm, df)
+        # data$y_predicted <- new.data
+        data$y_predicted <- lm$fitted.values
+    }
+
+    ggplot() +
+        geom_point(aes(x = data[[x_name]], y = data[[y_name]]),
+                   size = 3,
+                   color = "darkgreen",
+                   alpha = 0.5) +
+        geom_abline(slope = slope, intercept = int) +
+        {if (no_intercept) coord_equal()} +
+        {if (no_intercept) expand_limits(x = 0, y = 0)} +
+        {if (resid) geom_segment(aes(x = data[[x_name]], y = data[[y_name]],
+                                     xend = data[[x_name]], yend = data[["y_predicted"]]),
+                                 color = "red",
+                                 alpha = 0.3)} +
+        labs(x = x_name, y = y_name)
+
+}
+
+# ggplot_lm(lm(Petal.Length ~ 1, data = iris), data = iris, resid = TRUE)
+# ggplot_lm(lm(Petal.Length ~ Sepal.Length - 1, data = iris), data = iris, resid = TRUE)
+# ggplot_lm(lm(Petal.Length ~ Sepal.Length, data = iris), data = iris, resid = TRUE)
+```
+
+
+
+# Il modello lineare | Questo sconosciuto
+
+## Quasi tutta la statistica è un modello lineare | ma nessuno lo dice
+
+Il termine modello lineare è un termine così vasto da includere una granparte della statistica.
+
+Il nostro primo obbiettivo è di connettere questi concetti in modo che si spieghino a vicenda.
+
+In termini pratici si può definire "modello lineare" qualsiasi tentativo di connettere delle variabili esplicative (**indipendenti**) con delle variabili risultanti (**dipendenti**).
+
+Il modello lineare generale (_General Linear Model o GLM_) prevede che la variabile dipendente sia **continua** (ovvero **quantitativa**), questi modelli (o test, a seconda del punto di vista) sono detti **parametrici**.
+
+## 1. GLM con pendenza nulla | _anche noto come media aritmetica_
+
+Il nostro obbiettivo può essere visto in due modi diversi, ma matematicamente identici: 
+
+1. Individuare come **delle cause** concorrano a determinare **una conseguenza**.
+2. Riuscire a **indovinare** i valori della variabile **dipendente** sapendo i valori delle variabili **indipendenti**.
+
+---
+
+Quello che io ho sono $n$ misure $Y_i$ (come al solito è bene iniziare a familiarizzare con la terminologia, almeno un minimo), quindi $Y_1, Y_2, Y_3...Y_n$.
+
+Queste misure le possiamo scrivere come: 
+$$Y_i = \beta_0 + \epsilon_i$$
+
+È importante notare che $\beta$ (_beta_) ha uno zero al pedice, indicando che è un numero fisso, mentre la $\epsilon$ (_epsilon_) ha la $i$, intendendo che ha un valore diverso per ogni misura che abbiamo fatto.
+
+Questo modello mi dice: la $Y$ dovrebbe essere $\beta_0$, poi c'è il fatto che il mondo è complicato, e quello finisce tutto nella "correzione" $\epsilon$, chiamato **errore**.
+
+Quindi la "stima" (o in termini tecnici: lo **stimatore**) delle mie misure è:
+$$\hat{Y}_i = \beta_0$$
+
+## Una parentesi sui **metodi**
+
+Mettiamo un attimo da parte i modelli e consideriamo un altro problema: conoscendo l'altezza di tutti gli alunni di una classe, voglio identificare (**stimare**) il numero che mi fa andare più vicino alla misura giusta se scommettessi sempre sulla stessa altezza.
+
+Il problema diventa immediatamente: **cosa vuol dire andare più vicino al risultato esatto in una serie di misure?**
+
+È chiaro che cosa vuol dire più vicino in una misura: che la differenza fra il valore ipotizzato e quello reale (chiamiamolo **scarto**) è la minore possibile. Ma in **più misure?**
+
+In questo caso parliamo di **metodi**, ovvero di tecniche matematiche che ci aiutano a indovinare (**stimare**), i parametri (di un modello) che utilizziamo per indovinare (**stimare**) la mia grandezza di interesse.
+
+---
+
+Quindi come identifichiamo chi si è sbagliato meno?
+
+Una risposta elementare può essere: **chi ha la somma delgli scarti ($\sum_{i=1}^n\epsilon_i$) più bassa**.
+
+Questo sembra un buon sistema, ma fa schifo.
+
+$$WHY?$$
+
+---
+
+La seconda risposta più elementare può essere (considerando due errori piccoli meglio di uno grande), che ci è andato più vicino **chi ha la somma _dei quadrati degli scarti_ ($\sum_{i=1}^n \epsilon_i^2$) più bassa**
+
+Questo metodo è quasi universalmente considerato il top della vita, si è guadagnato un nome: **Metodo dei Minimi Quadrati** e un acronimo _**OLS**_ (_Ordinary Least Squares_).
+
+* è chiaro
+* è semplice da calcolare (anche a mano volendo)
+* non riserva sorprese
+* gli assunti che fa sui dati sono quasi sempre rispettati (e se non lo sono si mette male, il metodo è l'ultimo dei vostri problemi)
+
+---
+
+Ora questo valore che minimizza i quadrati degli scarti, per una serie di numeri di cui io non so nulla, è matematicamente identico, e quindi **la stessa cosa** del calcolo della media aritmetica.
+
+E questo di fatto ci rende molto felici: tutto torna, il valore costante che si avvicina di più a tutti i valori che ho misurato è la loro **media aritmetica**
+
+**N.B. vale la pena notare che la somma del quadrato degli errori diviso il numero delle misure**  $$\frac{\sum_{i=1}^N\epsilon_i^2}{N}$$
+
+**che viene minimizzata trovando la media, è la VARIANZA ($\sigma^2$)**
+
+## Torniamo ai modelli lineari
+
+Il modello più elementare che possiamo realizzare è quello che dà come risultato una retta orizzontale:
+
+```{r}
+lm <- lm(wt ~ 1, data = mtcars)
+lm
+```
+
+Quello che abbiamo chiesto è: **un valore che non vari con nessuna variabile** che mi consenta di predire il risultato della variabile **dipendente**.
+
+Il **metodo** utilizzato di default dai modelli lineari è, guardacaso, l'_**OLS**_.
+
+---
+
+possiamo facilmente controllare che **l'intercetta** (ovvero il valore della retta quando $x=0$) è uguale alla **media** dei valori della variabile dipendente:
+
+```{r}
+lm(wt ~ 1, data = mtcars)
+mean(mtcars$wt)
+```
+
+---
+
+Il mio modello lineare ha questa faccia:
+
+<div class="centered">
+```{r}
+ggplot_lm(lm, data = mtcars)
+```
+</div>
+
+sull'asse delle ho $X$ dei valori sequanziali, che mi tengono i punti staccati uno dall'altro,
+sull'asse $Y$ ci sono i valori della mia variabile, e **l'altezza** della retta che cerca di riassumere i miei punti è l'**intercetta**, e usando gli _**OLS**_ anche la media.
+
+---
+
+Gli $\epsilon_i$, possono eseere visti sul grafico come le lunghezze delle linee rose:
+
+<div class="centered">
+```{r}
+ggplot_lm(lm, data = mtcars, resid = TRUE)
+```
+</div>
+
+___
+
+A questo punto potremmo chiederci qual'è l'intervallo di confidenza dell'intercetta.  
+
+Cosa significa?
+
+Ricordiamoci che se il nostro è un campione (e non l'intera popolazione), la sua media non sarà la media della popolazione, ma solo **una stima** della media della popolazione.
+
+Questa stima sarà tanto migliore più il campione sarà grande, inoltre un campione piuttosto omogeneo suggerisce anche una popolazione piuttoto omogenea, e quindi una stima migliore.
+
+---
+
+
+
+
