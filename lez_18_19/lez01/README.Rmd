@@ -1,11 +1,16 @@
 ---
 title: "lez01: Introduzione al corso - L'analisi dei dati - Approccio alle statistiche"
 output: 
+        ioslides_presentation:
+                # rmdtable.css works just on the pandoc-made tables (the ones with |---|)
+                widescreen: true
+                df_print: paged
+                logo: files/logo.png
+                css: [files/gio_milligram.css, files/rmdtable.css] # milligram is modified by me
         github_document:
                 toc: TRUE
-                # toc_depth: 3 # default = 3
-                # fig_width: 7 # default = 7
-                # fig_height: 5 # default = 5
+                toc_depth: 2 # default = 3
+always_allow_html: yes
 ---
 
 ## Perché stiamo facendo questo corso?
@@ -19,27 +24,25 @@ output:
 | Statistica descrittiva | Riassumere i contenuti |
 | Statistica inferenziale | Individuare i legami causali |
 
+# Replicabilità
 
-
-## Replicabilità
-
-##### La scienza come somma di test riproducibili
+## La scienza come somma di test riproducibili
 Per qualsiasi analisi scientifica il punto principale è la possibilità di essere ripetuta (e fornire risultati analoghi) da altri operatori in possesso delle adeguate abilità. In particolare è necessario, in uno studio di tipo scientifico, fornire tutti i dettagli necessari a replicare le analisi svolte.  
 Questa funzione è normalmente svolta dalla sezione "Materiali e Metodi" degli articoli scientifici e delle tesi.
 
-##### Materiali e Metodi VS Analisi Point & Click
+## Materiali e Metodi VS Analisi Point & Click
 Se di un'analisi di laboratorio è possibile specificare passo passo tutte le operaizoni svolte, i reagenti utilizzati, ed i macchinari, questo diventa quasi impossibile per le elaborazioni dei dati:
 Il numero di passi, dall'apertura dei file al settaggio delle impostazioni dei grafici, rende impossibile una tracciatura univoca del processo, e quindi la riproduzione dei risultati ottenuti.
 Se questa sembra un'esagerazione o una pignoleria, si può provare a riprendere in mano una qualsiasi elaboraizone di 3 anni prima e chiedere a chi l'ha fatta di ripeterla, e poi ridere.
 Il problema è spesso generato dalla complessità crescente sia dei dati, sia delle analisi che su questi dati vengono svolte.
 
-##### Come si risolve il problema?
+## Come si risolve il problema?
 Automatizzando tutti i processi, dall'inizio alla fine.  
 Questo però prevede l'acquisizione di una serie di competenze nuove e di familiarità con una serie di strumenti che non fanno parte storicamente del nostro bagaglio.  
 Queste competenze possono però essere mutuate dall'informatica, che si è scontrato con gli stessi problemi decine di anni prima. Tutto sta nel trovare degli strumenti che rendano un po' meno problematica l'adozione delle soluzioni che l'informatica ha adottato già da decenni.
 
-#### FAQ
-##### Perché non EXCEL
+## FAQ
+### Perché non EXCEL
 * I dati con cui stiamo lavorando sono troppi per il programma 
 * la complessità delle operazioni rende le cose troppo complicate
 * Il programma, *per quanto non ci pensiamo*, non è gratuito
@@ -47,54 +50,62 @@ Queste competenze possono però essere mutuate dall'informatica, che si è scont
 * I passaggi (selezionare, spostare, copiare e incollare) sono un incubo da automatizzare
 * Se non automatizzati rendono il tutto assolutamente irriproducibile (e spesso non modificabile)
 
-##### Perché non Python
+___
+
+### Perché non Python
 * Questa è "quasi" solo una scelta di gusti
 * Python, per quanto ancora più versatile, e proprio per quel motivo, richiede un approccio ancora più orientato all'informatica
 * Idealmente *potrebbe essere una buona scelta imparare entrambi i linguaggi*, anche se il settore delle scienze applicate non si giova particolarmente della versatilità di Python
 
 ## Collaborazione
-##### Il primo dei problemi: io non parlo sloveno, tantomeno lo leggo
+### Il primo dei problemi: io non parlo sloveno, tantomeno lo leggo
 La collaborazione, nel mondo accademico ma non solo, passa prima di tutto da un linguaggio comune, che non dovrebbe mai essere dato per scontato: *fate un punto d'onore di utilizzare solo l'inglese per ogni cosa relativa ai vostri studi*, qualsiasi materiale prodotto, qualsiasi dato raccolto. E ringraziate il cielo che la lingua della comunità scientifica non sia più il latino.
 
-##### 2: le mille versioni di un file
+___
+
+### 2: le mille versioni di un file
 Anche lavorando da soli ci si può trovare a salvare decine di versioni dello stesso file di testo, per segmentarlo in diversi file quando cresce troppo, per finre con dei raccapriccianti archivi .zip di intere cartelle. Questo, quando si collabora in più persone allo stesso progetto, aumenta in modo esponenziale, mentre si aggiunge un altro problema:
 
-##### 3: chi sta lavorando a cosa
+___
+
+### 3: chi sta lavorando a cosa
 Va tutto bene finché non si scopre di aver lavorato due giorni su un file che qualcun altro ha nel frattempo reso completamente irrilevante.
 
 Questo è uno dei motivi per cui si **consiglia fortemente** <sup id="a1">[1](#f1)</sup> l'utilizzo del version control anche per i file che non contengono codice, e si ricorda che **NON È POSSIBILE METTERE SOTTO VERSION CONTROL FILE DI WORD**. Il formato Markdown, in particolare quello di R, permette in modo semplice di generare dei PDF estremamente funzionali e al contempo non impazzire con LaTeX.
 
-## Manutenzione
-##### Tutto il processo deve essere aggiornabile
+# Manutenzione
+## Tutto il processo deve essere aggiornabile
 Aggiornabile con il minimo sforzo, il che richiede che tutto, **tutto**, sia scomposto nelle più piccole unità funzionali possibili, in modo da poterle rimpiazzare, correggere, aggiornare, espandere, senza dover rimettere le mani all'intero progetto.
 
-##### LA DOCUMENTAZIONE
+## LA DOCUMENTAZIONE
 Ritornare su un progetto a distanza di settimane (quando non sono anni), può essere un'esperienza illuminante: spesso risulta più semplice ricostruire tutto da capo che non effettuare una piccola variazione. Il primo dei motivi per cui questo succede è l'assenza di documentazione: cioé di file dove sono spiegati tutti i termini, le abbreviazioni, le unità di misura, le scelte che sono state fatte.
 Mentre buone pratiche di scrittura (come l'identazione del codice, la scelta dei nomi per le variabili, ecc) si apprendono fondamentalmente con la pratica, una documentazione rigorosa può essere autoimposta attraverso alcune tecniche più avanzate, in primis un Versioning costante (ed altre che al momento esulano dagli scopi di questo corso, in particolare la creazione di `package` con RStudio).
 
-## L'analisi dei dati
+# L'analisi dei dati
 L'analisi dei dati (alla fin fine il centro di tutto questo corso) sta diventando sempre più una disciplina a se, all'interno dei differenti rami delle scienze: la mole di dati aumenta costantemente, le metodologie e le tecnologie per ottenerne informazioni idem. Tutto questo al momento va sotto il nome di *Data Science*, che comprende diverse fasi, ognuna a quanto pare con un suo nome e i suoi specialisti: *Data Harvesting*, *Data Carpentry*, *Machine Learning*, *Data Visualization*.
 
-##### Data Harvesting
+## Data Harvesting
 L'unica fase che non tratteremo nel nostro corso, ha un'importanza fondamentale però nelle applicazioni GIS. Nel resto dei campi di interesse forestale normalmente la raccolta dei dati viene effettuata in campo.
 
-##### Data Carpentry
+## Data Carpentry
 Sebbene il termine non si sia ancora pienamente stabilito, normalmente indica tutte quelle operazioni sui dati che permettono di passare dalle tabelle di dati grezzi ad una struttura ordinata che agevoli poi le analisi. Questa parte del lavoro è, in ordine di tempo e di sforzi, la parte principale del lavoro con i dati, sottovalutarne l'importanza è il più comune degli errori che commette chi studia queste materie senza passare subito alla pratica.
 
-##### Machine Learning
+## Machine Learning
 Sotto questo grande ombrello ricadono praticamente tutte le tecniche statistiche che ci permettono di identificare le strutture all'interno dei dati, dalle più semplici regressioni lineari a tecniche molto complesse.
 
-##### Data Visualization
+## Data Visualization
 Questo è normalmente un altro grande punto debole dell'analisi dei dati: la visualizzazione, punto chiave della comunicazione dei risultati, permette non solo di comprendere e scoprire il contenuto dei dati che abbiamo raccolto, ma anche di veicolarlo ad altri. Per questo, insieme alle tecniche di comunicazione rappresenta probabilmente il cardine di tutta l'analisi, che viene svolta proprio per arrivare più chiaramente possibile ai propri dstinatari.
+
+# Le satistiche
 
 ## Statistica descrittiva
 La statistica descrittiva si occupa di rappresentare in un modo comprensibile moli di dati altrimenti difficili da considerare nella loro interezza. In questo senso può essere vista come una collezione di tecniche di sintesi. Le tecniche possono essere anche molto complesse, ma si sviluppano in un ordine piuttosto lineare sopra tecniche più semplici.
 Il 90% della statistica nelle applicazioni forestali è statistica descrittiva, sia nel senso più letterale del termine, sia nella fase di analisi esplorativa.
 
-##Statistica inferenziale
+## Statistica inferenziale
 La statistica inferenziale si occupa di identificare i legami di causa-effetto all'interno dei dati reccolti. Questo tipo di analisi raramente possono essere svolte al di fuori di disegni sperimentali di laboratorio.
 
-##Hypotesis Testing
+## Hypotesis Testing
 Il cuore della statistica scientifica è la capacità di testare un'ipotesi sui dati, nella quasi totalità dei casi si tratta di verificare statisticamente che la struttura dei dati non sia casuale.
 Il punto chiave da ricordare è che se si vuole davvero testare un'ipotesi non si può fare **nessun'altro tipo di statistica sui dati**, almeno *non prima dei test*.
 Una buona pratica sarebbe quella di stabilire l'ipotesi ed i metodi per testarla ancora prima di raccogliere i dati.
@@ -103,12 +114,13 @@ Una buona pratica sarebbe quella di stabilire l'ipotesi ed i metodi per testarla
 
 Ok, cambiamo argomento...
 
----
-
 # La gestione dei dati
+
+___
+
 L'argomento è critico, per questo lo affrontiamo subito, con delle linee guida che da principio possono essere seguite abbastanza pedissequamente:
 
-### Copie, copie, copie
+## Copie, copie, copie
 
 I dati (e tutte le elaborazioni per quel che ci riguarda), dovrebbero esistere in **almeno 3 copie**, in **almeno 2 luoghi fisici** diversi. La prassi per noi sarà: una copia sul computer, una sul cloud (per i dati di partenza sia GitHub, DropBox, BOX, o Google Drive non importa), e un backup completo (almeno mensile) del computer su un Hard Disk esterno.
 
@@ -137,6 +149,8 @@ I dati grezzi devono essere pure e semplici trascrizioni dei dati originali, str
     * livello di sito/serra
     * livello regionale
     
+___    
+    
 2. creare un file singolo per ogni livello
 3. i dati vanno inseriti per riga: ogni colonna rappresenta una grandezza misurata, ogni riga una misura di quella grandezza. La prima colonna va laciata come ID della misura, la seconda come collegamento al livello superiore
 4. i dati vanno inseriti senza unità di misura (le unità di misura vanno specificate nella documentazione)
@@ -144,21 +158,22 @@ I dati grezzi devono essere pure e semplici trascrizioni dei dati originali, str
 6. le misure ripetute vanno considerate come una nuova misura
 7. il separatore dei decimali è **il punto, non la virgola**
 
+___
+
 Esercizio: trovate le differenze
 
-<h2>NO</h2>
+___
 
-PIANTA n°2.xlsx
+**NO** PIANTA n°2.xlsx
 
 | foglia | zona    | larghezza.marzo | lunghezza.marzo | larghezza.aprile | lunghezza.aprile |
 | ------ | ------- | --------------- | --------------- | ---------------- | ---------------- |
 | 2-01   | rosetta | 3,4 cm          | 1,3 cm          | 5,2 cm           | 2,0 cm           |
 | 2-02   | stelo   | 0               | 1,3 cm          | 0                | 0                |
 
+___
 
-<h2>SI</h2>
-
-leaf\_data.csv
+**SI** leaf\_data.csv
   
 | leaf | plant | where   | width | length | month |
 | ---- | ----- | ------- | ----- | ------ | ----- |
@@ -177,7 +192,11 @@ leaf\_data.csv
 | length | numeric: unit=cm , precision ±0.1 cm, measured without the stalk |
 | month  | numeric: 1=Jan., 2=Feb. ecc, measured the first day of each month |
 
+___
+
 A questo punto seguirà una tabella con tutte le piante:
+
+___
 
 **plant_data.csv**
 
@@ -186,6 +205,8 @@ A questo punto seguirà una tabella con tutte le piante:
 | 01    | 01   | ROSPEN | 3   | 1   |
 | 02    | 01   | ASPTEN | 5   | 1   |
 | 03    | 01   | BRASYL | 3   | 1   |
+
+___
 
 **plant_data_legend.csv**
 
@@ -197,8 +218,11 @@ A questo punto seguirà una tabella con tutte le piante:
 | N     | numeric: unit=g/l , Nitrium concentration in the irrigation water |
 | T     | numeric: treatment<br>1=sunlight<br>2=half-shade<br>3=shade |
 
+___
 
 Se una delle legende è più una traduzione di codici, come nel caso dei nomi delle piante, è opportuno preparare una tabella apposita (detta *lookup table*) con solo le due colonne: "codice" e "traduzione", generalmente indicate come **"key"** e **"value"**.
+
+___
 
 Sarebbe bellissimo se questi dati fossero collegati da uno schema delle loro relazioni<sup id="a3">[3](#f3)</sup>:
 
@@ -225,8 +249,7 @@ Il controllo degli errori qui è un serio problema: è difficile notare un "1.o"
 A questo punto, quando tutti i dati sono stati corretti, andrà scritto il programma che li mette tutti insieme, in una tabella unica, con un sacco di caselle uguali (ad esempio la latitudine di ogni foglia di una pianta). Su questa tabella saranno fatte le analisi.
 Vedremo come questo passaggio sia tutto sommato semplice e indolore.
 
-
----
+# the end
 
 ---
 
